@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     private void MoveEnemy()
     {
         Vector2 targetPos = player.transform.position;
-        enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, player.transform.position, 0.05f);
+        enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, player.transform.position, 0.03f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

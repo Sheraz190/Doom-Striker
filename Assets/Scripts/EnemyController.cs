@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     #endregion
 
     #region Variables
-    [SerializeField] private int enemyCount = 10;
+    [SerializeField] private int enemyCount = 5;
     #endregion
 
     private void Start()
@@ -39,18 +39,20 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        int count = 4;
-        while (count > 0)
+        
+        while (true)
         {
             GameObject temp_obj;
-            yield return new WaitForSeconds(Random.Range(1,3));
+            yield return new WaitForSeconds(3.0f);
             temp_obj = GetPooledObjects();
+            SelectDirection();
+            temp_obj.transform.position = new Vector2(direction, 0);
             temp_obj.SetActive(true);
-            count--;
         }
     }
 
 
+    
 
     private void SelectDirection()
     {
@@ -73,8 +75,9 @@ public class EnemyController : MonoBehaviour
             {
                 return pooledObjects[i];
             }
+
         }
-        Debug.Log("Enemies are empty");
+    
         return null;
     }
 
