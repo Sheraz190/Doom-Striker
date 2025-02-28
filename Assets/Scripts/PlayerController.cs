@@ -5,18 +5,45 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+
+    #region Variables
+
+    public static PlayerController Instance;
     public Rigidbody2D rb;
     public FixedJoystick joyStick;
     bool isGrounded = false;
-
     private float jumpForce = 300;
     private float moveSpeed = 3;
+    private Vector2 originalScale;
+    #endregion
 
-     void Update()
-     {
+    private void Start()
+    {
+        Instance = this;
+        originalScale = transform.localScale;
+    }
+    private void Update()
+    {
         rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, rb.velocity.y);
-     }
 
+        DetectInput();
+    }
+
+
+    private void DetectInput()
+    {
+        float horizontalInput = joyStick.Horizontal;
+        if (horizontalInput < 0)
+        {
+            transform.localScale = new Vector2(-originalScale.x, originalScale.y);
+
+        }
+        else if (horizontalInput > 0)
+        {
+            transform.localScale = new Vector2(originalScale.x, originalScale.y);
+        }
+    }
 
     public void Jump()
     {
@@ -26,11 +53,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Move()
-    {
-        
-    }
-    void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -38,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -50,9 +74,9 @@ public class PlayerController : MonoBehaviour
 
 
 
-   
 
-  
 
- 
+
+
+
 

@@ -4,29 +4,42 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public static EnemyController ECInstance;
-    public List<GameObject> pooledObjects;
-    private GameObject temp_obj;
-    public GameObject enemyPrefab;
-    private int enemyCount = 5;
+    public static EnemyController Instance;
 
-     void Start()
-     {
-        ECInstance = this;
-        for(int i=0;i<enemyCount;i++)
+    #region Game objects
+    [Space, Header("Lists")]
+    private List<GameObject> pooledObjects;
+    public GameObject enemyPrefab;
+    #endregion
+
+    #region Variables
+    [SerializeField] private int enemyCount = 5;
+    #endregion
+
+    private void Start()
+    {
+        Instance = this;
+        CreatePoolObjects();
+    }
+
+    private void CreatePoolObjects()
+    {
+        GameObject temp_obj;
+
+        pooledObjects = new List<GameObject>();
+        for (int i = 0; i < enemyCount; i++)
         {
-            temp_obj=Instantiate(enemyPrefab);
+            temp_obj = Instantiate(enemyPrefab, new Vector2(12, 0), Quaternion.identity);
             temp_obj.SetActive(false);
             pooledObjects.Add(temp_obj);
         }
+    }
 
-     }
-
-    public GameObject GetPooledObjects()
+    private GameObject GetPooledObjects()
     {
-        for(int i=0;i<enemyCount;i++)
+        for (int i = 0; i < enemyCount; i++)
         {
-            if(!pooledObjects[i].activeInHierarchy)
+            if (!pooledObjects[i].activeInHierarchy)
             {
                 return pooledObjects[i];
             }
@@ -35,4 +48,12 @@ public class EnemyController : MonoBehaviour
     }
 
 
+    public void StartSpawning()
+    {
+        for (int i = 0; i < enemyCount; i++)
+        {
+            GameObject temp_obj = GetPooledObjects();
+            temp_obj.SetActive(true);
+        }
+    }
 }
