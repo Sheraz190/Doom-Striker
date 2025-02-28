@@ -48,7 +48,6 @@ public class EnemyController : MonoBehaviour
             temp_obj.SetActive(true);
             count--;
         }
-        
     }
 
 
