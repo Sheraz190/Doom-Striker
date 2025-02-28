@@ -11,6 +11,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float bulletSpeed = 10f;
     private float direction = 0.0f;
+    private Vector3 bulletPosition;
     private List<GameObject> pooledBullets;
 
     #endregion
@@ -37,16 +38,18 @@ public class BulletController : MonoBehaviour
     {
 
         direction = 1;
+        bulletPosition = new Vector3(1.5f, 0.15f, 0);
         if (player.transform.localScale.x < 0)
         {
+            bulletPosition = new Vector3(-1.5f, -0.15f, 0);
             direction = -1;
         }
 
     }
-    private void FireBullet()
+    public void FireBullet()
     {
-        GetDirection();
-        Vector3 spawnPosition = player.transform.position;
+         GetDirection();
+        Vector3 spawnPosition = player.transform.position+ bulletPosition;
 
         for (int i = 0; i < bulletCount; i++)
         {
@@ -65,5 +68,19 @@ public class BulletController : MonoBehaviour
                 return;
             }
         }
+        ResetBullets();
     }
+
+    private void ResetBullets()
+    {
+        for (int i = 0; i < bulletCount; i++)
+        {
+            if (pooledBullets[i].activeInHierarchy)
+            {
+                pooledBullets[i].SetActive(false);
+            }
+        }
+    }
+
+    
 }

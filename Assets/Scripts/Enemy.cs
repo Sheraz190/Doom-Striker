@@ -27,14 +27,15 @@ public class Enemy : MonoBehaviour
     private void MoveEnemy()
     {
         Vector2 targetPos = player.transform.position;
-        enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, player.transform.position, 0.01f);
+        enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, player.transform.position, 0.05f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
         }
     }
 }

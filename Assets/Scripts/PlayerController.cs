@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance;
     public Rigidbody2D rb;
     public FixedJoystick joyStick;
-    bool isGrounded = false;
+    bool isGrounded = true;
     private float jumpForce = 300;
     private float moveSpeed = 3;
     private Vector2 originalScale;
@@ -21,12 +21,12 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        rb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale;
     }
     private void Update()
     {
         rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, rb.velocity.y);
-
         DetectInput();
     }
 

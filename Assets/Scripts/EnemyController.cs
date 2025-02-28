@@ -10,28 +10,59 @@ public class EnemyController : MonoBehaviour
     [Space, Header("Lists")]
     private List<GameObject> pooledObjects;
     public GameObject enemyPrefab;
+    private int direction = 12;
     #endregion
 
     #region Variables
-    [SerializeField] private int enemyCount = 5;
+    [SerializeField] private int enemyCount = 10;
     #endregion
 
     private void Start()
     {
         Instance = this;
         CreatePoolObjects();
+        StartCoroutine(SpawnEnemies());
     }
 
     private void CreatePoolObjects()
     {
         GameObject temp_obj;
-
         pooledObjects = new List<GameObject>();
         for (int i = 0; i < enemyCount; i++)
         {
-            temp_obj = Instantiate(enemyPrefab, new Vector2(12, 0), Quaternion.identity);
+            SelectDirection();
+            temp_obj = Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity);
             temp_obj.SetActive(false);
             pooledObjects.Add(temp_obj);
+        }
+    }
+
+    private IEnumerator SpawnEnemies()
+    {
+        int count = 4;
+        while (count > 0)
+        {
+            GameObject temp_obj;
+            yield return new WaitForSeconds(Random.Range(1,3));
+            temp_obj = GetPooledObjects();
+            temp_obj.SetActive(true);
+            count--;
+        }
+        
+    }
+
+
+
+    private void SelectDirection()
+    {
+        float num = Random.Range(0, 10);
+        if (num < 5)
+        {
+            direction = 12;
+        }
+        else
+        {
+            direction = -12;
         }
     }
 
@@ -44,16 +75,8 @@ public class EnemyController : MonoBehaviour
                 return pooledObjects[i];
             }
         }
+        Debug.Log("Enemies are empty");
         return null;
     }
 
-
-    public void StartSpawning()
-    {
-        for (int i = 0; i < enemyCount; i++)
-        {
-            GameObject temp_obj = GetPooledObjects();
-            temp_obj.SetActive(true);
-        }
-    }
 }
