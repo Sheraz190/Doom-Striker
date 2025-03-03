@@ -39,7 +39,6 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        
         while (true)
         {
             GameObject temp_obj;
@@ -51,8 +50,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
-    
 
     private void SelectDirection()
     {

@@ -13,8 +13,10 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public FixedJoystick joyStick;
     bool isGrounded = true;
-    private float jumpForce = 300;
-    private float moveSpeed = 3;
+   [Space, Header("Float Variables")]
+    public float jumpForce = 300;
+    public float moveSpeed = 3;
+    public float Health = 10;
     private Vector2 originalScale;
     #endregion
 
@@ -59,6 +61,19 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+        else if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Health -= 2;
+            CheckPlayerLife();
+        }
+    }
+
+    private void CheckPlayerLife()
+    {
+        if(Health<=0)
+        {
+            GameManager.Instance.CheckPlayerHealth();
         }
     }
 

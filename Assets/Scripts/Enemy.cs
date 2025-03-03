@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    #region Game objects
+    #region Game objects/ Variables
 
     private EnemyController enemyController;
     public GameObject enemy;
     private GameObject player;
     public Rigidbody rb;
+    [Space, Header("Variables")]
+    private int health;
+
     #endregion
 
     private void Start()
     {
         player = GameObject.Find("Player");
-
-
     }
 
+    private void OnEnable()
+    {
+        ResetHealth();
+    }
     private void Update()
     {
         MoveEnemy();
@@ -34,8 +39,22 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            gameObject.SetActive(false);
+            TakeDamage();
             collision.gameObject.SetActive(false);
         }
+    }
+
+    private void TakeDamage()
+    {
+        health--;
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void ResetHealth()
+    {
+        health = Random.Range(3, 5);
     }
 }

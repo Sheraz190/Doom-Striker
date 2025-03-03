@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private int bulletCount = 10;
     [SerializeField] private GameObject player;
-    [SerializeField] private float bulletSpeed = 10f;
+    [SerializeField] private float bulletSpeed = 500f;
     private float direction = 0.0f;
     private Vector3 bulletPosition;
     private List<GameObject> pooledBullets;
@@ -62,7 +62,7 @@ public class BulletController : MonoBehaviour
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    rb.velocity = new Vector2(direction * bulletSpeed, 0);
+                    rb.velocity = new Vector2(direction * bulletSpeed*5, 0);
                 }
 
                 return;
