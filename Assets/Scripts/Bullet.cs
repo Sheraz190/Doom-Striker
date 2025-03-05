@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     #region Variables
     private Vector2 bulletOriginalScale;
     #endregion
+
+
     private void Start()
     {
         bulletOriginalScale = transform.localScale;
