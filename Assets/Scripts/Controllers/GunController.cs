@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum guns
+public enum GunsTypes
 {
     None=0,
     Pistol=1,
@@ -12,7 +12,7 @@ public enum guns
     Shotgun=4,
     Assault_Rifle=5,
     Battle_Rifle=6,
-    PumpA_ction_Shotgun=7,
+    Pump_Action_Shotgun=7,
     LMG =8,
     HMG=9,
     RPG=10
@@ -22,7 +22,7 @@ public enum guns
 [Serializable]
 public class GunProperties
 {
-    public guns GunType;
+    public GunsTypes GunType;
     public int BulletCount;
     public float FireRate;
     public float ReloadTime;
@@ -35,6 +35,18 @@ public class GunProperties
 public class GunController : ScriptableObject
 {
 
-    public List<GunProperties> gunController;
+    public List<GunProperties> gunTypeProperty;
+
+    public GunProperties GetGun(GunsTypes type)
+    {
+        for (int i = 0; i < gunTypeProperty.Count; i++)
+        {
+            if (gunTypeProperty[i].GunType == type)
+            {
+                return gunTypeProperty[i];
+            }
+        }
+        return null;
+    }
 
 }

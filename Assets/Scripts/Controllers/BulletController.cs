@@ -12,7 +12,6 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float bulletSpeed = 500f;
     [SerializeField] private Transform gunPos;
     private float direction = 0.0f;
-    private Vector3 bulletPosition;
     private List<GameObject> pooledBullets;
 
     #endregion
@@ -20,11 +19,12 @@ public class BulletController : MonoBehaviour
     private void Start()
     {
         InstantiateBullets();
+        
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetMouseButtonDown(0))
         {
             FireBullet();
         }
@@ -48,7 +48,7 @@ public class BulletController : MonoBehaviour
         {
             direction = -1;
         }
-        else if(player.transform.localScale.x > 0)
+        else if (player.transform.localScale.x > 0)
         {
             direction = 1;
         }
@@ -80,5 +80,10 @@ public class BulletController : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void ReloadGun()
+    {
+
     }
 }

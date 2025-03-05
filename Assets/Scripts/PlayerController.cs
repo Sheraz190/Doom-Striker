@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
             if(Health>0)
             {
                 Health -= 2;
-                Debug.Log("Health is decreasing");
+                GamePlayPanel.Instance.DisplayHealth();
             }
             if (Health <= 0)
             {
@@ -126,6 +126,13 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
+        
+
+
+
+
+
 }
 
 

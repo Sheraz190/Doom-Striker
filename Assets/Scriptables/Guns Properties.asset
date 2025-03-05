@@ -12,54 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3fc213e472e0645b10096882c0e8db, type: 3}
   m_Name: Guns Properties
   m_EditorClassIdentifier: 
-  gunController:
+  gunTypeProperty:
   - GunType: 1
     BulletCount: 12
-    FireRate: 0.25
-    ReloadTime: 1.8
-    Damage: 22
-  - GunType: 2
-    BulletCount: 6
-    FireRate: 0.66
-    ReloadTime: 2.5
-    Damage: 40
-  - GunType: 3
-    BulletCount: 30
-    FireRate: 0.1
-    ReloadTime: 2.2
-    Damage: 18
-  - GunType: 4
-    BulletCount: 8
-    FireRate: 1
-    ReloadTime: 3
-    Damage: 80
-  - GunType: 5
-    BulletCount: 30
-    FireRate: 0.125
-    ReloadTime: 2.5
-    Damage: 30
-  - GunType: 6
-    BulletCount: 20
-    FireRate: 0.2
-    ReloadTime: 2.8
-    Damage: 45
-  - GunType: 7
-    BulletCount: 7
-    FireRate: 1
-    ReloadTime: 3
-    Damage: 90
-  - GunType: 8
-    BulletCount: 100
-    FireRate: 0.11
-    ReloadTime: 4.5
-    Damage: 28
-  - GunType: 9
-    BulletCount: 200
-    FireRate: 0.16
-    ReloadTime: 6
-    Damage: 50
-  - GunType: 0
-    BulletCount: 0
-    FireRate: 0
-    ReloadTime: 0
-    Damage: 0
+    FireRate: 14
+    ReloadTime: 5
+    Damage: 6
