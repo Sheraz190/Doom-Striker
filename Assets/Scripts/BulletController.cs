@@ -10,6 +10,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private int bulletCount = 10;
     [SerializeField] private GameObject player;
     [SerializeField] private float bulletSpeed = 500f;
+    [SerializeField] private Transform gunPos;
     private float direction = 0.0f;
     private Vector3 bulletPosition;
     private List<GameObject> pooledBullets;
@@ -21,6 +22,13 @@ public class BulletController : MonoBehaviour
         InstantiateBullets();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            FireBullet();
+        }
+    }
     private void InstantiateBullets()
     {
         pooledBullets = new List<GameObject>();
@@ -36,20 +44,24 @@ public class BulletController : MonoBehaviour
 
     private void GetDirection()
     {
-
-        direction = 1;
-        bulletPosition = new Vector3(1.5f, 0.15f, 0);
         if (player.transform.localScale.x < 0)
         {
-            bulletPosition = new Vector3(-1.5f, -0.15f, 0);
             direction = -1;
         }
-
+        else if(player.transform.localScale.x > 0)
+        {
+            direction = 1;
+        }
     }
     public void FireBullet()
     {
-         GetDirection();
-        Vector3 spawnPosition = player.transform.position+ bulletPosition;
+        BulletSpawn();
+    }
+
+    private void BulletSpawn()
+    {
+        GetDirection();
+        Vector3 spawnPosition = gunPos.position;
 
         for (int i = 0; i < bulletCount; i++)
         {
@@ -62,25 +74,11 @@ public class BulletController : MonoBehaviour
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    rb.velocity = new Vector2(direction * bulletSpeed*5, 0);
+                    rb.velocity = new Vector2(direction * bulletSpeed * 0.5f, 0);
                 }
 
                 return;
             }
         }
-        ResetBullets();
     }
-
-    private void ResetBullets()
-    {
-        for (int i = 0; i < bulletCount; i++)
-        {
-            if (pooledBullets[i].activeInHierarchy)
-            {
-                pooledBullets[i].SetActive(false);
-            }
-        }
-    }
-
-    
 }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106e6244db678b3409347faaf52726a2, type: 3}
+  m_Name: EnemyPresets
+  m_EditorClassIdentifier: 
+  enemyPresets:
+  - enemyType: 1
+    health: 2
+    scoreCountOnKill: 1
+    enemyHitValue: 1
+    enemyPrefab: {fileID: 0}
+  - enemyType: 2
+    health: 3
+    scoreCountOnKill: 2
+    enemyHitValue: 2
+    enemyPrefab: {fileID: 0}
+  - enemyType: 3
+    health: 5
+    scoreCountOnKill: 3
+    enemyHitValue: 4
+    enemyPrefab: {fileID: 0}
+  - enemyType: 4
+    health: 10
+    scoreCountOnKill: 7
+    enemyHitValue: 6
+    enemyPrefab: {fileID: 0}

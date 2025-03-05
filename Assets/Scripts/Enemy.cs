@@ -6,10 +6,9 @@ public class Enemy : MonoBehaviour
 {
     #region Game objects/ Variables
 
-    private EnemyController enemyController;
+  
     public GameObject enemy;
-    private GameObject player;
-    public Rigidbody rb;
+    private  GameObject player;
     [Space, Header("Variables")]
     private int health;
 
@@ -31,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     private void MoveEnemy()
     {
-        Vector2 targetPos = player.transform.position;
+        Vector2 targetPos = PlayerController.Instance.transform.position;
         enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, player.transform.position, 0.03f);
     }
 

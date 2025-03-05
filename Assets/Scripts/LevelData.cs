@@ -4,11 +4,18 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class EnemyData
+public class LevelPresetData
 {
     public int levelNumber;
+    public List<EnemyData> enemyList;
+}
+
+// anther class contain enemy type and count
+[Serializable]
+public class EnemyData
+{
+    public EnemyType enemyType;
     public int enemyCount;
-    public int enemyHealth;
     public float spawnRate;
 }
 
@@ -16,12 +23,7 @@ public class EnemyData
 
 public class LevelData : ScriptableObject
 {
-   
-    public List<EnemyData> enemyData;
+   public List<LevelPresetData> enemyData;
 
-    public void GetEnemyStatsbyLevel()
-    {
-      
-    }
-       
+ 
 }
