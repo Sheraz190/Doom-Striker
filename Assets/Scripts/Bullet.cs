@@ -18,13 +18,13 @@ public class Bullet : MonoBehaviour
         ChangeDirection();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("SideCollider"))
-        {
-            gameObject.SetActive(false);
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("SideCollider"))
+    //    {
+    //        gameObject.SetActive(false);
+    //    }
+    //}
 
     private void ChangeDirection()
     {

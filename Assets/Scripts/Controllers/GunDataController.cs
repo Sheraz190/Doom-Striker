@@ -4,29 +4,26 @@ using UnityEngine;
 
 public class GunDataController : MonoBehaviour
 {
+    #region Variables
     public static GunDataController Instance;
-    public GunController gunController;
+    public GunController Guncontroller;
     private GunProperties currentGun;
-    private int bulletCount;
+    public int bulletCount;
     private float fireRate;
     private float reloadTime;
     private float damage;
-
+    #endregion
 
     private void Start()
     {
-       
         Instance = this;
-        GetGunData(GunsTypes.Pistol);
+        GetGunData(GunsTypes.SMG);
     }
-
-
-  
 
     public void GetGunData(GunsTypes type)
     {
-        currentGun = gunController.GetGun(type);
-        if(currentGun==null)
+        currentGun = Guncontroller.GetGun(type);
+        if (currentGun == null)
         {
             Debug.Log("gun is empty ");
         }
@@ -38,7 +35,6 @@ public class GunDataController : MonoBehaviour
         Debug.Log("fireRate: " + fireRate);
         Debug.Log("REload: " + reloadTime);
         Debug.Log("Damage: " + damage);
-
+        Debug.Log("Gun Name: " + currentGun.GunType);
     }
-
 }

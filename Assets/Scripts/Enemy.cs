@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             TakeDamage();
-            collision.gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);                
         }
     }
 

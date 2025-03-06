@@ -31,6 +31,7 @@ public class BulletController : MonoBehaviour
     }
     private void InstantiateBullets()
     {
+        bulletCount = GunDataController.Instance.bulletCount;
         pooledBullets = new List<GameObject>();
         Vector3 spawnPosition = player.transform.position;
 
@@ -60,6 +61,7 @@ public class BulletController : MonoBehaviour
 
     private void BulletSpawn()
     {
+        Debug.Log("Bullet count is: " + bulletCount);
         GetDirection();
         Vector3 spawnPosition = gunPos.position;
 
@@ -82,8 +84,4 @@ public class BulletController : MonoBehaviour
         }
     }
 
-    public void ReloadGun()
-    {
-
-    }
 }

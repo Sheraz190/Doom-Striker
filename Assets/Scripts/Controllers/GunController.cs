@@ -16,7 +16,6 @@ public enum GunsTypes
     LMG =8,
     HMG=9,
     RPG=10
-
 }
 
 [Serializable]
@@ -31,7 +30,6 @@ public class GunProperties
 
 [CreateAssetMenu(fileName ="Guns Properties",menuName ="Game/Guns Properties")]
 
-
 public class GunController : ScriptableObject
 {
 
@@ -39,8 +37,11 @@ public class GunController : ScriptableObject
 
     public GunProperties GetGun(GunsTypes type)
     {
+        
+
         for (int i = 0; i < gunTypeProperty.Count; i++)
         {
+
             if (gunTypeProperty[i].GunType == type)
             {
                 return gunTypeProperty[i];
