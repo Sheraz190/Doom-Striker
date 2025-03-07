@@ -7,30 +7,49 @@ public class GamePlayPanel : MonoBehaviour
 {
     public static GamePlayPanel Instance;
     [SerializeField] private TextMeshProUGUI playerHealthText;
-    [SerializeField] private TextMeshProUGUI magazineText;
+    [SerializeField] private GameObject emptyShell;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform bulletPanel;
+    private List<GameObject> inst_Bullets=new List<GameObject>();
 
     private void Start()
     {
+       
+      
         Instance = this;
     }
     public void DisplayHealth()
     {
-       playerHealthText.text = "Health: " + PlayerController.Instance.Health;
+        playerHealthText.text = "Health: " + PlayerController.Instance.Health;
     }
 
-    public void DisplayMagazine(int bulletCount)
+    public void DisplayShells(int bulletCount)
     {
-        magazineText.text = "";
-        for(int i=0;i<bulletCount;i++)
+        Vector2 spawnPos = new Vector2(-100, 0);
+        for (int i = 0; i < bulletCount; i++)
         {
-            magazineText.text += '|';
-        } 
+           GameObject emptyobj= Instantiate(emptyShell,bulletPanel);
+            GameObject bullet= Instantiate(bulletPrefab, bulletPanel);
+            RectTransform rect = emptyobj.GetComponent<RectTransform>();
+            RectTransform bulletRect = bullet.GetComponent<RectTransform>();
+            rect.anchoredPosition = spawnPos;
+            bulletRect.anchoredPosition = spawnPos;
+            spawnPos.x += 24;
+            inst_Bullets.Add(bullet);
+        }
     }
 
-
-
-
-
-
- 
+    public void DeleteBullet(int bulletcount)
+    {
+        for(int i=inst_Bullets.Count-1;i>=0;i--)
+        {
+            if(i>=bulletcount)
+            {
+                if (inst_Bullets[i].gameObject.activeInHierarchy)
+                {
+                    inst_Bullets[i].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
 }

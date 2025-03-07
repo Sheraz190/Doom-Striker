@@ -16,6 +16,7 @@ public class GunController : MonoBehaviour
     {
         Instance = this;
         GetGunData(GunsTypes.Revolver);
+        GamePlayPanel.Instance.DisplayShells(bulletCount);
     }
 
     public void GetGunData(GunsTypes type)

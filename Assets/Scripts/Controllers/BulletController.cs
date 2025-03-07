@@ -63,7 +63,7 @@ public class BulletController : MonoBehaviour
 
     private void BulletSpawn()
     {
-        Debug.Log("Bullet count is: " + bulletCount);
+        
         GetDirection();
         Vector3 spawnPosition = gunPos.position;
 
@@ -75,7 +75,7 @@ public class BulletController : MonoBehaviour
                 bullet.transform.position = spawnPosition;
                 bullet.SetActive(true);
                 bulletCount--;
-                GamePlayPanel.Instance.DisplayMagazine(bulletCount);
+                GamePlayPanel.Instance.DeleteBullet(bulletCount);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {

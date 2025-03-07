@@ -32,19 +32,38 @@ public class PlayerController : MonoBehaviour
     {
         DetectInput();
         JumpForEditor();
+        SetGravity();
         ChangeDirectionForEditor();
-        #if UNITY_EDITOR
+        Movings();
+    }
+
+
+    private void SetGravity()
+    {
+        if(rb.velocity.y>0||rb.velocity.y==0)
+        {
+            rb.gravityScale = 0.98f;
+        }
+        else if(rb.velocity.y<0)
+        {
+            rb.gravityScale = 2.5f;
+        }
+    }
+
+    private void Movings()
+    {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.D))
-            {
-            transform.Translate(Vector2.right*moveSpeed*Time.deltaTime);
-            }
-            else if(Input.GetKeyDown(KeyCode.A))
-            {
+        {
+            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         }
-     #else
+#else
         rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, rb.velocity.y);
-      #endif
+#endif
     }
 
 
