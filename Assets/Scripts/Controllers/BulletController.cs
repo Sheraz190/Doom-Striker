@@ -7,7 +7,7 @@ public class BulletController : MonoBehaviour
     #region Variables
 
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private int bulletCount = 10;
+    [SerializeField] private int bulletCount;
     [SerializeField] private GameObject player;
     [SerializeField] private float bulletSpeed = 500f;
     [SerializeField] private Transform gunPos;
@@ -19,7 +19,6 @@ public class BulletController : MonoBehaviour
     private void Start()
     {
         InstantiateBullets();
-        
     }
 
     private void Update()
@@ -31,7 +30,7 @@ public class BulletController : MonoBehaviour
     }
     private void InstantiateBullets()
     {
-        bulletCount = GunDataController.Instance.bulletCount;
+        bulletCount = GunController.Instance.bulletCount;
         pooledBullets = new List<GameObject>();
         Vector3 spawnPosition = player.transform.position;
 
@@ -56,7 +55,10 @@ public class BulletController : MonoBehaviour
     }
     public void FireBullet()
     {
-        BulletSpawn();
+        if (bulletCount != 0)
+        {
+            BulletSpawn();
+        }
     }
 
     private void BulletSpawn()
@@ -65,23 +67,22 @@ public class BulletController : MonoBehaviour
         GetDirection();
         Vector3 spawnPosition = gunPos.position;
 
-        for (int i = 0; i < bulletCount; i++)
+        for (int i = 0; i < GunController.Instance.bulletCount; i++)
         {
             if (!pooledBullets[i].activeInHierarchy)
             {
                 GameObject bullet = pooledBullets[i];
                 bullet.transform.position = spawnPosition;
                 bullet.SetActive(true);
-
+                bulletCount--;
+                GamePlayPanel.Instance.DisplayMagazine(bulletCount);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
                     rb.velocity = new Vector2(direction * bulletSpeed * 0.5f, 0);
                 }
-
                 return;
             }
         }
     }
-
 }

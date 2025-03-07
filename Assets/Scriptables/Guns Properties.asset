@@ -9,57 +9,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3fc213e472e0645b10096882c0e8db, type: 3}
+  m_Script: {fileID: 11500000, guid: 65f9b5c7849013941a7aee709d7840e6, type: 3}
   m_Name: Guns Properties
   m_EditorClassIdentifier: 
   gunTypeProperty:
   - GunType: 1
     BulletCount: 12
-    FireRate: 0.4
-    ReloadTime: 2
-    Damage: 30
+    FireRate: 6
+    ReloadTime: 8
+    Damage: 10
   - GunType: 2
     BulletCount: 6
-    FireRate: 0.6
-    ReloadTime: 3
-    Damage: 60
-  - GunType: 3
-    BulletCount: 30
-    FireRate: 0.1
-    ReloadTime: 3
-    Damage: 20
-  - GunType: 4
-    BulletCount: 8
-    FireRate: 0.6
-    ReloadTime: 3
-    Damage: 100
-  - GunType: 5
-    BulletCount: 30
-    FireRate: 0.08
-    ReloadTime: 3
-    Damage: 28
-  - GunType: 6
-    BulletCount: 25
-    FireRate: 0.12
-    ReloadTime: 3.2
-    Damage: 50
-  - GunType: 7
-    BulletCount: 5
-    FireRate: 1.2
-    ReloadTime: 3.5
-    Damage: 110
-  - GunType: 8
-    BulletCount: 100
-    FireRate: 0.1
-    ReloadTime: 5
-    Damage: 30
-  - GunType: 9
-    BulletCount: 120
-    FireRate: 0.086
-    ReloadTime: 6
-    Damage: 40
-  - GunType: 10
-    BulletCount: 1
-    FireRate: 2
-    ReloadTime: 5
-    Damage: 500
+    FireRate: 0
+    ReloadTime: 0
+    Damage: 0
+  - GunType: 0
+    BulletCount: 0
+    FireRate: 0
+    ReloadTime: 0
+    Damage: 0
+  - GunType: 0
+    BulletCount: 0
+    FireRate: 0
+    ReloadTime: 0
+    Damage: 0
+  - GunType: 0
+    BulletCount: 0
+    FireRate: 0
+    ReloadTime: 0
+    Damage: 0
+  - GunType: 0
+    BulletCount: 0
+    FireRate: 0
+    ReloadTime: 0
+    Damage: 0
+  - GunType: 0
+    BulletCount: 0
+    FireRate: 0
+    ReloadTime: 0
+    Damage: 0
+  - GunType: 0
+    BulletCount: 0
+    FireRate: 0
+    ReloadTime: 0
+    Damage: 0
+  - GunType: 0
+    BulletCount: 0
+    FireRate: 0
+    ReloadTime: 0
+    Damage: 0

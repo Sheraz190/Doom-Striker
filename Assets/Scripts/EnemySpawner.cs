@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Instance = this;
         CreatePoolObjects();
-        StartCoroutine(SpawnEnemies());
+       // StartCoroutine(SpawnEnemies());
     }
 
     private void CreatePoolObjects()

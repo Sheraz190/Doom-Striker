@@ -1,53 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public enum GunsTypes
+public class GunController : MonoBehaviour
 {
-    None=0,
-    Pistol=1,
-    Revolver=2,
-    SMG=3,
-    Shotgun=4,
-    Assault_Rifle=5,
-    Battle_Rifle=6,
-    Pump_Action_Shotgun=7,
-    LMG =8,
-    HMG=9,
-    RPG=10
-}
+    #region Variables
+    public static GunController Instance;
+   [SerializeField]private  GunDataController gunDataController;
+    private GunProperties currentGun;
+    public int bulletCount;
+    private float fireRate;
+    private float reloadTime;
+    private float damage;
+    #endregion
 
-[Serializable]
-public class GunProperties
-{
-    public GunsTypes GunType;
-    public int BulletCount;
-    public float FireRate;
-    public float ReloadTime;
-    public float Damage;
-}
-
-[CreateAssetMenu(fileName ="Guns Properties",menuName ="Game/Guns Properties")]
-
-public class GunController : ScriptableObject
-{
-
-    public List<GunProperties> gunTypeProperty;
-
-    public GunProperties GetGun(GunsTypes type)
+    private void Start()
     {
-        
-
-        for (int i = 0; i < gunTypeProperty.Count; i++)
-        {
-
-            if (gunTypeProperty[i].GunType == type)
-            {
-                return gunTypeProperty[i];
-            }
-        }
-        return null;
+        Instance = this;
+        GetGunData(GunsTypes.Revolver);
     }
 
+    public void GetGunData(GunsTypes type)
+    {
+        currentGun = gunDataController.GetGun(type);
+        if (currentGun == null)
+        {
+            Debug.Log("gun is empty ");
+        }
+        bulletCount = currentGun.BulletCount;
+        fireRate = currentGun.FireRate;
+        reloadTime = currentGun.ReloadTime;
+        damage = currentGun.Damage;
+        Debug.Log("Bullet count: " + bulletCount);
+        Debug.Log("fireRate: " + fireRate);
+        Debug.Log("REload: " + reloadTime);
+        Debug.Log("Damage: " + damage);
+        Debug.Log("Gun Name: " + currentGun.GunType);
+    }
 }

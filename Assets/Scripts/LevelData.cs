@@ -24,6 +24,4 @@ public class EnemyData
 public class LevelData : ScriptableObject
 {
    public List<LevelPresetData> enemyData;
-
- 
 }
