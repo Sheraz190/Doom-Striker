@@ -7,8 +7,8 @@ public class GunController : MonoBehaviour
    [SerializeField]private  GunDataController gunDataController;
     private GunProperties currentGun;
     public int bulletCount;
-    private float fireRate;
-    private float reloadTime;
+    public float fireRate;
+    public float reloadTime;
     private float damage;
     #endregion
 

@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         if(rb.velocity.y>0||rb.velocity.y==0)
         {
-            rb.gravityScale = 0.98f;
+            rb.gravityScale = 1.5f;
         }
         else if(rb.velocity.y<0)
         {

@@ -10,7 +10,7 @@ public class GamePlayPanel : MonoBehaviour
     [SerializeField] private GameObject emptyShell;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletPanel;
-    private List<GameObject> inst_Bullets=new List<GameObject>();
+    public List<GameObject> inst_Bullets=new List<GameObject>();
 
     private void Start()
     {
@@ -36,20 +36,6 @@ public class GamePlayPanel : MonoBehaviour
             bulletRect.anchoredPosition = spawnPos;
             spawnPos.x += 24;
             inst_Bullets.Add(bullet);
-        }
-    }
-
-    public void DeleteBullet(int bulletcount)
-    {
-        for(int i=inst_Bullets.Count-1;i>=0;i--)
-        {
-            if(i>=bulletcount)
-            {
-                if (inst_Bullets[i].gameObject.activeInHierarchy)
-                {
-                    inst_Bullets[i].gameObject.SetActive(false);
-                }
-            }
         }
     }
 }
