@@ -19,7 +19,7 @@ public class BulletController : MonoBehaviour
 
     private void Start()
     {
-        InstantiateBullets();
+        StartCoroutine(InstantiateBullets());
     }
 
     private void Update()
@@ -29,8 +29,9 @@ public class BulletController : MonoBehaviour
             FireBullet();
         }
     }
-    private void InstantiateBullets()
+    private IEnumerator InstantiateBullets()
     {
+        yield return new WaitForSeconds(0.5f);
         bulletCount = GunController.Instance.bulletCount;
         pooledBullets = new List<GameObject>();
         Vector3 spawnPosition = player.transform.position;
@@ -65,7 +66,7 @@ public class BulletController : MonoBehaviour
     private IEnumerator BulletSpawn()
     {
         canShoot = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0);
         
         GetDirection();
         Vector3 spawnPosition = gunPos.position;
@@ -102,7 +103,6 @@ public class BulletController : MonoBehaviour
                     GamePlayPanel.Instance.inst_Bullets[i].gameObject.SetActive(false);
                 }
             }
-            
         }
     }
 
@@ -113,7 +113,6 @@ public class BulletController : MonoBehaviour
         {
             StartCoroutine(Reload());    
         }
-
     }
 
     private IEnumerator Reload()

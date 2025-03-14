@@ -39,7 +39,6 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             TakeDamage();
-            //collision.gameObject.SetActive(false);                
         }
     }
 
@@ -54,6 +53,6 @@ public class Enemy : MonoBehaviour
 
     private void ResetHealth()
     {
-        health = Random.Range(3, 5);
+        health = Random.Range(1,3);
     }
 }
