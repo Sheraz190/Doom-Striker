@@ -66,7 +66,7 @@ public class BulletController : MonoBehaviour
     private IEnumerator BulletSpawn()
     {
         canShoot = false;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(GunController.Instance.fireRate);
         
         GetDirection();
         Vector3 spawnPosition = gunPos.position;
@@ -84,7 +84,7 @@ public class BulletController : MonoBehaviour
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    rb.velocity = new Vector2(direction * bulletSpeed * 0.5f, 0);
+                    rb.velocity = new Vector2(direction * bulletSpeed * 2.5f, 0);
                 }
                 break;    
             }
@@ -117,7 +117,7 @@ public class BulletController : MonoBehaviour
 
     private IEnumerator Reload()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(GunController.Instance.reloadTime);
         ResetBullet();
         GamePlayPanel.Instance.inst_Bullets.Clear();
         GamePlayPanel.Instance.DisplayShells(GunController.Instance.bulletCount);

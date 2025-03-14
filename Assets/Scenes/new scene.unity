@@ -460,7 +460,7 @@ Transform:
   m_GameObject: {fileID: 333342402}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1038.6, y: -23.339994, z: 2.770843}
+  m_LocalPosition: {x: -1038.6, y: -22.8, z: 2.770843}
   m_LocalScale: {x: 0.93288696, y: 0.5772, z: 0.5772}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -847,7 +847,7 @@ Transform:
   m_GameObject: {fileID: 732078403}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1050.3524, y: -23.340002, z: 2.770843}
+  m_LocalPosition: {x: -1050.3524, y: -22.8, z: 2.770843}
   m_LocalScale: {x: 0.93288696, y: 0.5772, z: 0.5772}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1089,9 +1089,10 @@ MonoBehaviour:
   player: {fileID: 1010017012}
   rb: {fileID: 0}
   joyStick: {fileID: 885164957}
-  jumpForce: 300
+  jumpForce: 500
   moveSpeed: 3
   Health: 10
+  currentGun: 3
 --- !u!61 &1010017014
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1152,7 +1153,7 @@ Rigidbody2D:
   m_Mass: 60
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2.5
+  m_GravityScale: 0.98
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1225,7 +1226,7 @@ Transform:
   m_GameObject: {fileID: 1010017012}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: -1, z: 90}
+  m_LocalPosition: {x: -2, y: -0.5, z: 90}
   m_LocalScale: {x: 6.843, y: 6.843, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1704,7 +1705,7 @@ Transform:
   m_GameObject: {fileID: 1245956132}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1055.0325, y: -23.340002, z: 2.770843}
+  m_LocalPosition: {x: -1055.0325, y: -22.8, z: 2.770843}
   m_LocalScale: {x: 0.93288696, y: 0.5772, z: 0.5772}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1759,7 +1760,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.396658, y: -1.2131017}
+  m_Offset: {x: 1.396658, y: -0.853778}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1770,7 +1771,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 41.343052, y: 2.6499846}
+  m_Size: {x: 41.343052, y: 3.368632}
   m_EdgeRadius: 0
 --- !u!4 &1281863432
 Transform:
@@ -1902,7 +1903,7 @@ Transform:
   m_GameObject: {fileID: 1366774340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1050.3524, y: -23.340002, z: 2.770843}
+  m_LocalPosition: {x: -1050.3524, y: -22.8, z: 2.770843}
   m_LocalScale: {x: 0.93288696, y: 0.5772, z: 0.5772}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2111,7 +2112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -37, y: 35}
+  m_AnchoredPosition: {x: -37, y: 37}
   m_SizeDelta: {x: 230, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1623405278
@@ -2183,6 +2184,7 @@ MonoBehaviour:
   emptyShell: {fileID: 7551937767311684104, guid: 97bfa6ec74ec7af4d9052faa365c8d14, type: 3}
   bulletPrefab: {fileID: 3746853038082980070, guid: 2e33e6f8b27c64146857953318809f1d, type: 3}
   bulletPanel: {fileID: 1602068360}
+  inst_Bullets: []
 --- !u!4 &1789938734
 Transform:
   m_ObjectHideFlags: 0
@@ -2608,7 +2610,7 @@ Transform:
   m_GameObject: {fileID: 1911232516}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1046.9824, y: -23.340002, z: 2.770843}
+  m_LocalPosition: {x: -1046.9824, y: -22.8, z: 2.770843}
   m_LocalScale: {x: 0.93288696, y: 0.5772, z: 0.5772}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2645,6 +2647,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDataController: {fileID: 11400000, guid: 92ae39763b2b2b64db3828842dbe77b2, type: 2}
   bulletCount: 0
+  fireRate: 0
+  reloadTime: 0
 --- !u!4 &1958903356
 Transform:
   m_ObjectHideFlags: 0
@@ -2784,7 +2788,7 @@ Transform:
   m_GameObject: {fileID: 2026958574}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1043.1725, y: -23.340002, z: 2.770843}
+  m_LocalPosition: {x: -1043.1725, y: -22.8, z: 2.770843}
   m_LocalScale: {x: 0.93288696, y: 0.5772, z: 0.5772}
   m_ConstrainProportionsScale: 0
   m_Children: []

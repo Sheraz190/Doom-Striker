@@ -16,17 +16,17 @@ MonoBehaviour:
   - GunType: 1
     BulletCount: 12
     FireRate: 6
-    ReloadTime: 8
+    ReloadTime: 4
     Damage: 10
   - GunType: 2
     BulletCount: 6
     FireRate: 0
-    ReloadTime: 0
+    ReloadTime: 1
     Damage: 0
-  - GunType: 0
-    BulletCount: 0
-    FireRate: 0
-    ReloadTime: 0
+  - GunType: 3
+    BulletCount: 8
+    FireRate: 0.25
+    ReloadTime: 3
     Damage: 0
   - GunType: 0
     BulletCount: 0

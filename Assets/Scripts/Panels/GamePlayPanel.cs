@@ -25,7 +25,7 @@ public class GamePlayPanel : MonoBehaviour
 
     public void DisplayShells(int bulletCount)
     {
-        Vector2 spawnPos = new Vector2(-100, 0);
+        Vector2 spawnPos = new Vector2(-100, -20);
         for (int i = 0; i < bulletCount; i++)
         {
            GameObject emptyobj= Instantiate(emptyShell,bulletPanel);

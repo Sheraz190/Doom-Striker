@@ -16,14 +16,16 @@ public class PlayerController : MonoBehaviour
     public FixedJoystick joyStick;
     bool isGrounded = true;
    [Space, Header("Float Variables")]
-    public float jumpForce = 300;
+    public float jumpForce = 1;
     public float moveSpeed = 3;
     public float Health = 10;
     private Vector2 originalScale;
+    public GunsTypes currentGun;
     #endregion
 
     private void Start()
     {
+        
         Instance = this;
         rb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale;
@@ -40,13 +42,14 @@ public class PlayerController : MonoBehaviour
 
     private void SetGravity()
     {
-        if(rb.velocity.y>0||rb.velocity.y==0)
+        if (rb.velocity.y > 0 || rb.velocity.y == 0)
         {
-            rb.gravityScale = 1.5f;
+            rb.gravityScale = 2;
+           // Debug.Log(" velocity" + rb.velocity.y);
         }
-        else if(rb.velocity.y<0)
+        else if (rb.velocity.y < 6)
         {
-            rb.gravityScale = 2.5f;
+            rb.gravityScale = 6;
         }
     }
 
@@ -113,6 +116,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            
         }
     }
 

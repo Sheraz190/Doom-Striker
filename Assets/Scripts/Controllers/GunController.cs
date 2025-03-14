@@ -15,7 +15,7 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        GetGunData(GunsTypes.Revolver);
+        GetGunData(PlayerController.Instance.currentGun);
         GamePlayPanel.Instance.DisplayShells(bulletCount);
     }
 
@@ -30,10 +30,6 @@ public class GunController : MonoBehaviour
         fireRate = currentGun.FireRate;
         reloadTime = currentGun.ReloadTime;
         damage = currentGun.Damage;
-        Debug.Log("Bullet count: " + bulletCount);
-        Debug.Log("fireRate: " + fireRate);
-        Debug.Log("REload: " + reloadTime);
-        Debug.Log("Damage: " + damage);
-        Debug.Log("Gun Name: " + currentGun.GunType);
+        
     }
 }
