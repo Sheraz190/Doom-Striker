@@ -15,46 +15,55 @@ MonoBehaviour:
   gunTypeProperty:
   - GunType: 1
     BulletCount: 12
-    FireRate: 6
+    FireRate: 1
     ReloadTime: 4
     Damage: 10
+    GunPrefab: {fileID: 245073808639553481, guid: bca2a5586c7291441a504490514471eb, type: 3}
   - GunType: 2
     BulletCount: 6
     FireRate: 0
     ReloadTime: 1
     Damage: 0
+    GunPrefab: {fileID: 3937651281474642324, guid: e321d374ed6951d4cb9cfe8b20ec7817, type: 3}
   - GunType: 3
     BulletCount: 8
     FireRate: 0.25
     ReloadTime: 3
     Damage: 0
+    GunPrefab: {fileID: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
+    GunPrefab: {fileID: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
+    GunPrefab: {fileID: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
+    GunPrefab: {fileID: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
+    GunPrefab: {fileID: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
+    GunPrefab: {fileID: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
+    GunPrefab: {fileID: 0}

@@ -5,12 +5,12 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     #region Variables
-
+    public static BulletController Instance;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private int bulletCount;
     [SerializeField] private GameObject player;
     [SerializeField] private float bulletSpeed = 500f;
-    [SerializeField] private Transform gunPos;
+     public Transform gunPos;
     private bool canShoot = true;
     private float direction = 0.0f;
     private List<GameObject> pooledBullets;
@@ -19,6 +19,7 @@ public class BulletController : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         StartCoroutine(InstantiateBullets());
     }
 

@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     #region Game objects/ Variables
 
-  
+    private bool touchPlayer = false;
     public GameObject enemy;
     private  GameObject player;
     [Space, Header("Variables")]
@@ -17,16 +17,24 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
+        
     }
 
     private void OnEnable()
     {
         ResetHealth();
+        touchPlayer = false;
     }
     private void Update()
     {
-        MoveEnemy();
+        if (!touchPlayer)
+        {
+            MoveEnemy();
+        }
     }
+
+
+
 
     private void MoveEnemy()
     {
@@ -39,6 +47,10 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             TakeDamage();
+        }
+        if(collision.gameObject.CompareTag("Player")||collision.gameObject.CompareTag("Enemy"))
+        {
+            touchPlayer = true;
         }
     }
 
@@ -55,4 +67,8 @@ public class Enemy : MonoBehaviour
     {
         health = Random.Range(1,3);
     }
+
+
+
+
 }

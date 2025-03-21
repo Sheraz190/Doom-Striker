@@ -6,12 +6,10 @@ using Unity;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public static PlayerController Instance;
 
     #region Variables
-
     public GameObject player;
-    public static PlayerController Instance;
     public Rigidbody2D rb;
     public FixedJoystick joyStick;
     bool isGrounded = true;
@@ -24,8 +22,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     private void Start()
-    {
-        
+    {   
         Instance = this;
         rb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale;
@@ -45,7 +42,6 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.y > 0 || rb.velocity.y == 0)
         {
             rb.gravityScale = 2;
-           // Debug.Log(" velocity" + rb.velocity.y);
         }
         else if (rb.velocity.y < 6)
         {
@@ -72,7 +68,6 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeDirectionForEditor()
     {
-       
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.localScale = new Vector2(originalScale.x, originalScale.y);
@@ -81,7 +76,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = new Vector2(-originalScale.x, originalScale.y);
         }
-         
     }
 
 
@@ -106,17 +100,14 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-
         #endif
     }
-
 
     public void Jump()
     {
         if (isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            
         }
     }
 
@@ -140,7 +131,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
     
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -149,13 +139,6 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
-
-        
-
-
-
-
-
 }
 
 

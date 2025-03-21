@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4969659442838558661}
   - component: {fileID: 1296978066451293671}
   m_Layer: 0
-  m_Name: EnemyPrefab
+  m_Name: Grunt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

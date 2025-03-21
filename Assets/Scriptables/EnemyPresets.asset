@@ -17,12 +17,12 @@ MonoBehaviour:
     health: 2
     scoreCountOnKill: 1
     enemyHitValue: 1
-    enemyPrefab: {fileID: 0}
+    enemyPrefab: {fileID: 6138835853303260659, guid: a18a3e1ce23e21b408821f2726ba273e, type: 3}
   - enemyType: 2
     health: 3
     scoreCountOnKill: 2
     enemyHitValue: 2
-    enemyPrefab: {fileID: 0}
+    enemyPrefab: {fileID: 6138835853303260659, guid: df175d22ccd37d94089e1baa179306c4, type: 3}
   - enemyType: 3
     health: 5
     scoreCountOnKill: 3
