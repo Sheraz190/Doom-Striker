@@ -10,7 +10,10 @@ public class BulletController : MonoBehaviour
     [SerializeField] private int bulletCount;
     [SerializeField] private GameObject player;
     [SerializeField] private float bulletSpeed = 500f;
-     public Transform gunPos;
+    [SerializeField] private GameObject BulletContainer;
+   
+    private Vector3 spawnPosition;
+    public Transform gunPos;
     private bool canShoot = true;
     private float direction = 0.0f;
     private List<GameObject> pooledBullets;
@@ -39,7 +42,7 @@ public class BulletController : MonoBehaviour
 
         for (int i = 0; i < bulletCount; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity,BulletContainer.transform);
             bullet.SetActive(false);
             pooledBullets.Add(bullet);
         }
@@ -56,6 +59,7 @@ public class BulletController : MonoBehaviour
             direction = 1;
         }
     }
+
     public void FireBullet()
     {
         if (bulletCount != 0&&canShoot)
@@ -70,13 +74,13 @@ public class BulletController : MonoBehaviour
         yield return new WaitForSeconds(GunController.Instance.fireRate);
         
         GetDirection();
-        Vector3 spawnPosition = gunPos.position;
 
         for (int i = 0; i < GunController.Instance.bulletCount; i++)
         {
             if (!pooledBullets[i].activeInHierarchy)
             {
                 GameObject bullet = pooledBullets[i];
+                spawnPosition = new Vector3(GunSpawner.Instance.FirePos.transform.position.x, GunSpawner.Instance.FirePos.transform.position.y,0);
                 bullet.transform.position = spawnPosition;
                 bullet.SetActive(true);
                 bulletCount--;

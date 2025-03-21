@@ -7,6 +7,7 @@ public class GunController : MonoBehaviour
    [SerializeField]private  GunDataController gunDataController;
     private GunProperties currentGun;
     public GameObject gunPrefab;
+    public Vector3 firePos;
     public int bulletCount;
     public float fireRate;
     public float reloadTime;
@@ -32,9 +33,6 @@ public class GunController : MonoBehaviour
         reloadTime = currentGun.ReloadTime;
         damage = currentGun.Damage;
         gunPrefab = currentGun.GunPrefab;
-        if(gunPrefab==null)
-        {
-            Debug.Log("cannot find the gun");
-        }
+        firePos = currentGun.firepos;       
     }
 }

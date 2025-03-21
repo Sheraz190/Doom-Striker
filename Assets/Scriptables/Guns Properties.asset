@@ -19,51 +19,60 @@ MonoBehaviour:
     ReloadTime: 4
     Damage: 10
     GunPrefab: {fileID: 245073808639553481, guid: bca2a5586c7291441a504490514471eb, type: 3}
+    firepos: {x: 5, y: 1.5, z: 0}
   - GunType: 2
     BulletCount: 6
     FireRate: 0
     ReloadTime: 1
     Damage: 0
-    GunPrefab: {fileID: 3937651281474642324, guid: e321d374ed6951d4cb9cfe8b20ec7817, type: 3}
+    GunPrefab: {fileID: 245073808639553481, guid: eeb2975ab8a2e7043a6d44a62116ab3c, type: 3}
+    firepos: {x: 0.25, y: 0.1, z: 0}
   - GunType: 3
     BulletCount: 8
     FireRate: 0.25
     ReloadTime: 3
     Damage: 0
     GunPrefab: {fileID: 0}
+    firepos: {x: 1, y: 0, z: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
     GunPrefab: {fileID: 0}
+    firepos: {x: 1, y: 0, z: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
     GunPrefab: {fileID: 0}
+    firepos: {x: 1, y: 0, z: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
     GunPrefab: {fileID: 0}
+    firepos: {x: 1, y: 0, z: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
     GunPrefab: {fileID: 0}
+    firepos: {x: 1, y: 0, z: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
     GunPrefab: {fileID: 0}
+    firepos: {x: 1, y: 0, z: 0}
   - GunType: 0
     BulletCount: 0
     FireRate: 0
     ReloadTime: 0
     Damage: 0
     GunPrefab: {fileID: 0}
+    firepos: {x: 1, y: 0, z: 0}

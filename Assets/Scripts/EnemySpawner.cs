@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     #region Game objects
     private List<GameObject> pooledObjects;
     [SerializeField]private GameObject enemyPrefab;
-    
+    [SerializeField] private GameObject enemyContainer;
     [Space, Header("")]
     [SerializeField] private int enemyCount = 5;
     private int direction = 12;
@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < enemyCount; i++)
         {
             SelectDirection();
-            temp_obj = Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity);
+            temp_obj = Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity,enemyContainer.transform.transform);
             temp_obj.SetActive(false);
             pooledObjects.Add(temp_obj);
         }
@@ -73,7 +73,6 @@ public class EnemySpawner : MonoBehaviour
             }
 
         }
-
         return null;
     }
 }

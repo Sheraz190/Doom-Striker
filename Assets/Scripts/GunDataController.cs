@@ -26,6 +26,7 @@ public class GunProperties
     public float ReloadTime;
     public float Damage;
     public GameObject GunPrefab;
+    public Vector3 firepos = new Vector3(1, 0, 0);
 }
 
 [CreateAssetMenu(fileName = "Guns Properties", menuName = "Game/Guns Properties")]
