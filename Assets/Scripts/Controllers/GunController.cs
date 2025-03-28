@@ -7,6 +7,7 @@ public class GunController : MonoBehaviour
    [SerializeField]private  GunDataController gunDataController;
     private GunProperties currentGun;
     public GameObject gunPrefab;
+    public GameObject bullet;
     public Vector3 firePos;
     public int bulletCount;
     public float fireRate;
@@ -24,15 +25,11 @@ public class GunController : MonoBehaviour
     public void GetGunData(GunsTypes type)
     {
         currentGun = gunDataController.GetGun(type);
-        if (currentGun == null)
-        {
-            Debug.Log("gun is empty ");
-        }
         bulletCount = currentGun.BulletCount;
         fireRate = currentGun.FireRate;
         reloadTime = currentGun.ReloadTime;
         damage = currentGun.Damage;
         gunPrefab = currentGun.GunPrefab;
-        firePos = currentGun.firepos;       
+
     }
 }

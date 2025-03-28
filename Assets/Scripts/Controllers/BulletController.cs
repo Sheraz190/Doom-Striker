@@ -24,6 +24,7 @@ public class BulletController : MonoBehaviour
     {
         Instance = this;
         StartCoroutine(InstantiateBullets());
+   
     }
 
     private void Update()
@@ -35,6 +36,7 @@ public class BulletController : MonoBehaviour
     }
     private IEnumerator InstantiateBullets()
     {
+       
         yield return new WaitForSeconds(0.5f);
         bulletCount = GunController.Instance.bulletCount;
         pooledBullets = new List<GameObject>();

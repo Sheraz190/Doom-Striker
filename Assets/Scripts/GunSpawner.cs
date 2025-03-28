@@ -35,12 +35,21 @@ public class GunSpawner : MonoBehaviour
     private IEnumerator SpawnGun()
     {
         yield return new WaitForSeconds(1.0f);
+        FetchData();
+        GameObject Inst_Gun = Instantiate(gun, gunSpawnPos, Quaternion.identity, Player.transform);
+        SettingChildFirePos(Inst_Gun);
+        gunScale = gun.transform.localScale;
+    }
+
+    private void FetchData()
+    {
         gun = GunController.Instance.gunPrefab;
         gunSpawnPos = BulletController.Instance.gunPos.position;
-        GameObject Inst_Gun = Instantiate(gun, gunSpawnPos, Quaternion.identity, Player.transform);
-        FirePos.transform.SetParent(Inst_Gun.transform);
-        FirePos.transform.localPosition =GunController.Instance.firePos;
-        gunScale = gun.transform.localScale;
-      
+    }
+
+    private void SettingChildFirePos(GameObject inst_gun)
+    {
+        FirePos.transform.SetParent(inst_gun.transform);
+        FirePos.transform.localPosition = GunController.Instance.firePos;
     }
 }
