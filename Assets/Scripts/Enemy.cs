@@ -6,18 +6,21 @@ public class Enemy : MonoBehaviour
 {
     #region Game objects/ Variables
 
+
     private bool touchPlayer = false;
     public GameObject enemy;
-    private  GameObject player;
+
+    private EnemyPresetsValues currentEnemy;
+    private GameObject player;
     [Space, Header("Variables")]
-    private int health;
+    private float health;
 
     #endregion
 
     private void Start()
     {
         player = GameObject.Find("Player");
-        
+
     }
 
     private void OnEnable()
@@ -48,7 +51,7 @@ public class Enemy : MonoBehaviour
         {
             TakeDamage();
         }
-        if(collision.gameObject.CompareTag("Player")||collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             touchPlayer = true;
         }
@@ -56,7 +59,7 @@ public class Enemy : MonoBehaviour
 
     private void TakeDamage()
     {
-        health--;
+        health -= GunController.Instance.damage;
         if (health <= 0)
         {
             gameObject.SetActive(false);
@@ -65,10 +68,9 @@ public class Enemy : MonoBehaviour
 
     private void ResetHealth()
     {
-        health = Random.Range(1,3);
+        health = 4;
     }
 
-
-
+   
 
 }

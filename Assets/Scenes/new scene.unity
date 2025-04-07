@@ -1058,7 +1058,7 @@ MonoBehaviour:
   jumpForce: 500
   moveSpeed: 3
   Health: 10
-  currentGun: 2
+  currentGun: 5
 --- !u!61 &1010017014
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2682,6 +2682,7 @@ MonoBehaviour:
   bulletCount: 0
   fireRate: 0
   reloadTime: 0
+  damage: 0
 --- !u!4 &1958903356
 Transform:
   m_ObjectHideFlags: 0

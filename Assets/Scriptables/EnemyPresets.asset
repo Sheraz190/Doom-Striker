@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPresets:
   - enemyType: 1
-    health: 2
+    health: 3
     scoreCountOnKill: 1
     enemyHitValue: 1
     enemyPrefab: {fileID: 6138835853303260659, guid: a18a3e1ce23e21b408821f2726ba273e, type: 3}

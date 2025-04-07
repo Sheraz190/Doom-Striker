@@ -12,7 +12,7 @@ public class GunController : MonoBehaviour
     public int bulletCount;
     public float fireRate;
     public float reloadTime;
-    private float damage;
+    public float damage;
     #endregion
 
     private void Start()
