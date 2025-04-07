@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
         Movings();
     }
 
-
     private void SetGravity()
     {
         if (rb.velocity.y > 0 || rb.velocity.y == 0)
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+   
     private void DetectInput()
     {
         float horizontalInput = joyStick.Horizontal;
