@@ -39,7 +39,7 @@ MonoBehaviour:
     FireRate: 0.25
     ReloadTime: 1
     Damage: 4
-    GunPrefab: {fileID: 2096063225949995146, guid: 07b0623171468154a9f2d0bbcc00bdb3, type: 3}
+    GunPrefab: {fileID: 0}
     firepos: {x: 8, y: 0.5, z: 0}
   - GunType: 6
     BulletCount: 8

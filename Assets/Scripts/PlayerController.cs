@@ -13,10 +13,13 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public FixedJoystick joyStick;
     bool isGrounded = true;
-   [Space, Header("Float Variables")]
+    [SerializeField] private Animation walkAnim;
+ 
+    [Space, Header("Float Variables")]
     public float jumpForce = 1;
     public float moveSpeed = 3;
     public float Health = 10;
+    private Animator animator;
     private Vector2 originalScale;
     public GunsTypes currentGun;
     #endregion
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
         Instance = this;
         rb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale;
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -53,12 +57,18 @@ public class PlayerController : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.D))
         {
+           
+            animator.SetBool("isWalk", true);
+           
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
+            
+            animator.SetBool("isWalk", true);
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         }
+
 #else
         rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, rb.velocity.y);
 #endif

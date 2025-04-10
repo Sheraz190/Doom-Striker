@@ -16,7 +16,7 @@ public class GunSpawner : MonoBehaviour
     private void Start()
     {
         Instance =this;
-        StartCoroutine(SpawnGun());
+        //StartCoroutine(SpawnGun());
     }
 
     private void Update()
@@ -36,8 +36,8 @@ public class GunSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         FetchData();
-        GameObject Inst_Gun = Instantiate(gun, gunSpawnPos, Quaternion.identity, Player.transform);
-        SettingChildFirePos(Inst_Gun);
+        //GameObject Inst_Gun = Instantiate(gun, gunSpawnPos, Quaternion.identity, Player.transform);
+        //SettingChildFirePos(Inst_Gun);
         gunScale = gun.transform.localScale;
     }
 

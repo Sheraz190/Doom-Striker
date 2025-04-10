@@ -10,17 +10,17 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> pooledObjects;
     [SerializeField]private GameObject enemyPrefab;
     [SerializeField] private GameObject enemyContainer;
-    [Space, Header("")]
+    [Space, Header("Variables ")]
     [SerializeField] private int enemyCount = 5;
     private int direction = 12;
 
     #endregion
 
-    private void Start()
+    private void Start()                
     {
         Instance = this;
-        CreatePoolObjects();
-        StartCoroutine(SpawnEnemies());
+       // CreatePoolObjects();
+        //StartCoroutine(SpawnEnemies());
     }
 
     private void CreatePoolObjects()
