@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class BulletController : MonoBehaviour
 {
     #region Variables
@@ -31,6 +31,10 @@ public class BulletController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             FireBullet();
         }
     }
@@ -42,7 +46,7 @@ public class BulletController : MonoBehaviour
         pooledBullets = new List<GameObject>();
         Vector3 spawnPosition = player.transform.position;
 
-        for (int i = 0; i < bulletCount; i++)
+        for (int i = 0; i < 30; i++)
         {
             GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity,BulletContainer.transform);
             bullet.SetActive(false);

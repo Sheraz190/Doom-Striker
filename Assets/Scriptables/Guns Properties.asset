@@ -14,72 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunTypeProperty:
   - GunType: 1
+    GunIndex: 0
     BulletCount: 12
     FireRate: 0.25
     ReloadTime: 4
     Damage: 3
-    GunPrefab: {fileID: 8976417058709775250, guid: 677379741b6034647b17509e00c641a3, type: 3}
+    GunPrefab: {fileID: 5412522496995153878, guid: 677379741b6034647b17509e00c641a3, type: 3}
     firepos: {x: 1.5, y: 0.8, z: 0}
   - GunType: 2
-    BulletCount: 6
+    GunIndex: 1
+    BulletCount: 12
     FireRate: 0
     ReloadTime: 1
     Damage: 3
-    GunPrefab: {fileID: 5211927520415300755, guid: 57cc63f7d8065f44f92aa70e890fa83e, type: 3}
+    GunPrefab: {fileID: 1981987236920689644, guid: f85889d138d6e99458de6381788df4b0, type: 3}
     firepos: {x: 3.5, y: 0.8, z: 0}
   - GunType: 3
-    BulletCount: 8
-    FireRate: 0.25
+    GunIndex: 2
+    BulletCount: 12
+    FireRate: 0
     ReloadTime: 1
     Damage: 3
-    GunPrefab: {fileID: 1947112117141370868, guid: 3b38ee7aa9ff1a740992ce495ca56d9f, type: 3}
-    firepos: {x: 3, y: 2, z: 0}
-  - GunType: 5
-    BulletCount: 8
-    FireRate: 0.25
-    ReloadTime: 1
-    Damage: 4
-    GunPrefab: {fileID: 0}
-    firepos: {x: 8, y: 0.5, z: 0}
-  - GunType: 6
-    BulletCount: 8
-    FireRate: 0.25
-    ReloadTime: 1
-    Damage: 3
-    GunPrefab: {fileID: 2748697106351186367, guid: 5d8ebbc1c8950e844bfd2e248f6eda74, type: 3}
-    firepos: {x: 1, y: 0, z: 0}
-  - GunType: 7
-    BulletCount: 8
-    FireRate: 0.25
-    ReloadTime: 1
-    Damage: 3
-    GunPrefab: {fileID: 7226203454503092295, guid: a9c9ebb016f0a984aadf5b4f934b253c, type: 3}
-    firepos: {x: 7, y: 0, z: 0}
-  - GunType: 8
-    BulletCount: 8
-    FireRate: 0.25
-    ReloadTime: 1
-    Damage: 3
-    GunPrefab: {fileID: 1923174620430801362, guid: 62d098abed1e73f4d82f332a8523203a, type: 3}
-    firepos: {x: 10, y: 0, z: 0}
-  - GunType: 9
-    BulletCount: 8
-    FireRate: 0.02
-    ReloadTime: 1
-    Damage: 3
-    GunPrefab: {fileID: 1487989756176058319, guid: 10b215904998a914c9950b16b3b8e919, type: 3}
-    firepos: {x: 10, y: 1.5, z: 0}
-  - GunType: 10
-    BulletCount: 1
-    FireRate: 0.25
-    ReloadTime: 1
-    Damage: 3
-    GunPrefab: {fileID: 1946126055197116175, guid: b67a5b04c10337e448b9076722bd5d18, type: 3}
-    firepos: {x: 12, y: 0, z: 0}
+    GunPrefab: {fileID: 8239254195684853754, guid: d640a1e4f8824834daa575e54785f42e, type: 3}
+    firepos: {x: 3.5, y: 0.8, z: 0}
   - GunType: 4
-    BulletCount: 8
-    FireRate: 0.25
+    GunIndex: 3
+    BulletCount: 12
+    FireRate: 0
     ReloadTime: 1
     Damage: 3
-    GunPrefab: {fileID: 7143207581765785927, guid: 4119738b71a97f5499645daca689ed98, type: 3}
-    firepos: {x: 10, y: 0.8, z: 0}
+    GunPrefab: {fileID: 7843428209161485576, guid: 8bbce7e739dfde642a51ece6cefa67c0, type: 3}
+    firepos: {x: 3.5, y: 0.8, z: 0}

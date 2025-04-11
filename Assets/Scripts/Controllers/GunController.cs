@@ -18,13 +18,13 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        GetGunData(PlayerController.Instance.currentGun);
+        GetGunData(0);
         GamePlayPanel.Instance.DisplayShells(bulletCount);
     }
 
-    public void GetGunData(GunsTypes type)
+    public void GetGunData(int index)
     {
-        currentGun = gunDataController.GetGun(type);
+        currentGun = gunDataController.GetGun(index);
         bulletCount = currentGun.BulletCount;
         fireRate = currentGun.FireRate;
         reloadTime = currentGun.ReloadTime;

@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public FixedJoystick joyStick;
     bool isGrounded = true;
     [SerializeField] private Animation walkAnim;
- 
+    private bool isWalking = false;
     [Space, Header("Float Variables")]
     public float jumpForce = 1;
     public float moveSpeed = 3;
@@ -55,26 +55,36 @@ public class PlayerController : MonoBehaviour
     private void Movings()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-           
+            isWalking = true;
             animator.SetBool("isWalk", true);
-           
-            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+           transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
-            
+            isWalking = true;
             animator.SetBool("isWalk", true);
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         }
-
+        else
+        {
+            isWalking = false;
+        }
+        SetWalkBool();
 #else
+        animator.SetBool("isWalk", true);
         rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, rb.velocity.y);
 #endif
     }
 
-
+    private void SetWalkBool()
+    {
+        if (!isWalking)
+        {
+            animator.SetBool("isWalk", false);
+        }
+    }
     private void ChangeDirectionForEditor()
     {
         if (Input.GetKeyDown(KeyCode.D))
