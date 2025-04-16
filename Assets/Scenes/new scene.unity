@@ -799,7 +799,7 @@ Transform:
   m_GameObject: {fileID: 550324305}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09, y: 0, z: 0}
+  m_LocalPosition: {x: 0.09, y: -0.18, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1567,12 +1567,12 @@ Transform:
   m_GameObject: {fileID: 1010017012}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: -1, z: 90}
-  m_LocalScale: {x: 5, y: 5, z: 0}
+  m_LocalPosition: {x: -6.6959, y: -1.7533, z: 90}
+  m_LocalScale: {x: 2.975366, y: 2.9910717, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 550324306}
   - {fileID: 1730291580}
+  - {fileID: 550324306}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1010017018
@@ -2916,8 +2916,8 @@ Transform:
   m_GameObject: {fileID: 1730291579}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.16000001, z: 0}
-  m_LocalScale: {x: 0.029226944, y: 0.029226957, z: 0}
+  m_LocalPosition: {x: 1.47, y: 3, z: 0}
+  m_LocalScale: {x: 0.029226944, y: 0.029226989, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1010017017}
@@ -3498,9 +3498,9 @@ RectTransform:
   - {fileID: 1569597341}
   m_Father: {fileID: 66798317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 203.5, y: 126.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -144.5, y: -69.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944915053
@@ -3555,9 +3555,9 @@ MonoBehaviour:
     m_Options:
     - m_Text: Pistol
       m_Image: {fileID: 21300000, guid: aa3a9e0cd90385e47b387ff6cb5639a5, type: 3}
-    - m_Text: Airgun
+    - m_Text: ShotGun
       m_Image: {fileID: 21300000, guid: c853505838980614bb904a5a21dc409c, type: 3}
-    - m_Text: Shotgun
+    - m_Text: AirGun
       m_Image: {fileID: 0}
     - m_Text: Assault
       m_Image: {fileID: 0}

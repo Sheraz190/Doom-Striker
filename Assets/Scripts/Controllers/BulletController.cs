@@ -7,7 +7,7 @@ public class BulletController : MonoBehaviour
     #region Variables
     public static BulletController Instance;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private int bulletCount;
+    public int bulletCount;
     [SerializeField] private GameObject player;
     [SerializeField] private float bulletSpeed = 500f;
     [SerializeField] private GameObject BulletContainer;
@@ -86,34 +86,51 @@ public class BulletController : MonoBehaviour
             if (!pooledBullets[i].activeInHierarchy)
             {
                 GameObject bullet = pooledBullets[i];
-                spawnPosition = new Vector3(GunSpawner.Instance.FirePos.transform.position.x, GunSpawner.Instance.FirePos.transform.position.y,0);
-                bullet.transform.position = spawnPosition;
+                SetBulletSpawnPosition(bullet);
                 bullet.SetActive(true);
-                bulletCount--;
-                DeleteBullet(bulletCount);
-                ChecktoReload();
-                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                {
-                    rb.velocity = new Vector2(direction * bulletSpeed * 2.5f, 0);
-                }
+                SetBulletCount();
+                MovingBullet(bullet);
                 break;    
             }
         }
         canShoot = true;
     }
 
+
+    private void SetBulletSpawnPosition(GameObject bullet)
+    {
+        spawnPosition = new Vector3(GunSpawner.Instance.FirePos.transform.position.x, GunSpawner.Instance.FirePos.transform.position.y, 0);
+        bullet.transform.position = spawnPosition;
+    }
+
+    private void SetBulletCount()
+    {
+        bulletCount--;
+        DeleteBullet(bulletCount);
+        ChecktoReload();
+    }
+
+    private void MovingBullet(GameObject bullet)
+    {
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = new Vector2(direction * bulletSpeed * 2.5f, 0);
+        }
+    }
+
     private void DeleteBullet(int bulletcount)
     {
-        for (int i = GamePlayPanel.Instance.inst_Bullets.Count - 1; i >= 0; i--)
+        for (int i = 0; i < GamePlayPanel.Instance.inst_Bullets.Count; i++)
         {
-            if (i >= bulletcount)
-            {
+            //if (i >= bulletcount)
+            //{
                 if (GamePlayPanel.Instance.inst_Bullets[i].gameObject.activeInHierarchy)
                 {
                     GamePlayPanel.Instance.inst_Bullets[i].gameObject.SetActive(false);
+                    break;
                 }
-            }
+            //}
         }
     }
 
@@ -126,16 +143,17 @@ public class BulletController : MonoBehaviour
         }
     }
 
-    private IEnumerator Reload()
+    public IEnumerator Reload()
     {
         yield return new WaitForSeconds(GunController.Instance.reloadTime);
-        ResetBullet();
-        GamePlayPanel.Instance.inst_Bullets.Clear();
-        GamePlayPanel.Instance.DisplayShells(GunController.Instance.bulletCount);
+        DeactivatingPooledBullets();
         bulletCount = GunController.Instance.bulletCount;
+        GamePlayPanel.Instance.ReloadBullets(bulletCount);
+
+
     }
 
-    private void ResetBullet()
+    public void DeactivatingPooledBullets()
     {
         for(int i=0;i<pooledBullets.Count;i++)
         {
@@ -145,4 +163,9 @@ public class BulletController : MonoBehaviour
             }
         }
     }
+
+
+
+
+
 }

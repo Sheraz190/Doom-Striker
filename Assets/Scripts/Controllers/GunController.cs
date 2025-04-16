@@ -30,6 +30,6 @@ public class GunController : MonoBehaviour
         reloadTime = currentGun.ReloadTime;
         damage = currentGun.Damage;
         gunPrefab = currentGun.GunPrefab;
-
+        firePos = currentGun.firepos;
     }
 }

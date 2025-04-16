@@ -16,21 +16,20 @@ public class GunSpawner : MonoBehaviour
 
     private void Start()
     {
-       
         Instance =this;
-       StartCoroutine(SpawnGun());
+        StartCoroutine(SpawnGun());
     }
 
     private void Update()
     {
-        if (Player.transform.localScale.x < 0)
-        {
-            gun.transform.localScale = gunScale;
-        }
-        else if (Player.transform.localScale.x > 0)
-        {
-            gun.transform.localScale = gunScale;
-        }
+        //if (Player.transform.localScale.x < 0)
+        //{
+        //    gun.transform.localScale = gunScale;
+        //}
+        //else if (Player.transform.localScale.x > 0)
+        //{
+        //    gun.transform.localScale = gunScale;
+        //}
     }
 
 
@@ -38,7 +37,8 @@ public class GunSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         FetchData();
-      Inst_Gun = Instantiate(gun, gunSpawnPos, Quaternion.identity, Player.transform);
+        FirePos.transform.position = GunController.Instance.firePos;
+        Inst_Gun = Instantiate(gun, gunSpawnPos, Quaternion.identity, Player.transform);
         SettingChildFirePos(Inst_Gun);
         gunScale = gun.transform.localScale;
     }
@@ -61,12 +61,8 @@ public class GunSpawner : MonoBehaviour
         Inst_Gun.SetActive(false);
         GunController.Instance.GetGunData(index);
         StartCoroutine(SpawnGun());
-
+        GamePlayPanel.Instance.ReloadBullets(GunController.Instance.bulletCount);
+        BulletController.Instance.DeactivatingPooledBullets();
+        BulletController.Instance.bulletCount = GunController.Instance.bulletCount;
     }
-
-
-
-
-
-
 }

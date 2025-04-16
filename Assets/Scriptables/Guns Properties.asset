@@ -20,28 +20,28 @@ MonoBehaviour:
     ReloadTime: 4
     Damage: 3
     GunPrefab: {fileID: 5412522496995153878, guid: 677379741b6034647b17509e00c641a3, type: 3}
-    firepos: {x: 1.5, y: 0.8, z: 0}
+    firepos: {x: 0.14, y: 0.025, z: 0}
   - GunType: 2
     GunIndex: 1
-    BulletCount: 12
-    FireRate: 0
+    BulletCount: 6
+    FireRate: 1
     ReloadTime: 1
     Damage: 3
     GunPrefab: {fileID: 1981987236920689644, guid: f85889d138d6e99458de6381788df4b0, type: 3}
-    firepos: {x: 3.5, y: 0.8, z: 0}
+    firepos: {x: 0.47, y: 0, z: 0}
   - GunType: 3
     GunIndex: 2
-    BulletCount: 12
-    FireRate: 0
+    BulletCount: 4
+    FireRate: 1
     ReloadTime: 1
     Damage: 3
     GunPrefab: {fileID: 8239254195684853754, guid: d640a1e4f8824834daa575e54785f42e, type: 3}
-    firepos: {x: 3.5, y: 0.8, z: 0}
+    firepos: {x: 0.55, y: 0.04, z: 0}
   - GunType: 4
     GunIndex: 3
-    BulletCount: 12
-    FireRate: 0
+    BulletCount: 3
+    FireRate: 1
     ReloadTime: 1
     Damage: 3
     GunPrefab: {fileID: 7843428209161485576, guid: 8bbce7e739dfde642a51ece6cefa67c0, type: 3}
-    firepos: {x: 3.5, y: 0.8, z: 0}
+    firepos: {x: 0.35, y: 0.05, z: 0}
