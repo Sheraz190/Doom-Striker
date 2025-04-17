@@ -11,16 +11,14 @@ public class DropDownController : MonoBehaviour
 
     #endregion
 
-       private void Start()
-       {
-           dropDown.value = 0;
-           dropDown.onValueChanged.AddListener(MethodOnValueChanged);
-     
-       }
+    private void Start()
+    {
+        dropDown.value = 0;
+        dropDown.onValueChanged.AddListener(MethodOnValueChanged);
+    }
 
-     void MethodOnValueChanged(int index)
-     {
+    void MethodOnValueChanged(int index)
+    {
         GunSpawner.Instance.ChangeGun(index);
-        
-     }
+    }
 }

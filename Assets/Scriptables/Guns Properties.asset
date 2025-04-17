@@ -39,9 +39,9 @@ MonoBehaviour:
     firepos: {x: 0.55, y: 0.04, z: 0}
   - GunType: 4
     GunIndex: 3
-    BulletCount: 3
-    FireRate: 1
-    ReloadTime: 1
+    BulletCount: 6
+    FireRate: 0.25
+    ReloadTime: 0.5
     Damage: 3
     GunPrefab: {fileID: 7843428209161485576, guid: 8bbce7e739dfde642a51ece6cefa67c0, type: 3}
     firepos: {x: 0.35, y: 0.05, z: 0}

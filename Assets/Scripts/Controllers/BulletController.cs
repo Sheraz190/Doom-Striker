@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class BulletController : MonoBehaviour
 {
-    #region Variables
+    #region Variables/Game Objects 
     public static BulletController Instance;
     [SerializeField] private GameObject bulletPrefab;
     public int bulletCount;
     [SerializeField] private GameObject player;
     [SerializeField] private float bulletSpeed = 500f;
     [SerializeField] private GameObject BulletContainer;
-   
+
     private Vector3 spawnPosition;
     public Transform gunPos;
     private bool canShoot = true;
@@ -24,7 +24,7 @@ public class BulletController : MonoBehaviour
     {
         Instance = this;
         StartCoroutine(InstantiateBullets());
-   
+
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class BulletController : MonoBehaviour
     }
     private IEnumerator InstantiateBullets()
     {
-       
+
         yield return new WaitForSeconds(0.5f);
         bulletCount = GunController.Instance.bulletCount;
         pooledBullets = new List<GameObject>();
@@ -48,7 +48,7 @@ public class BulletController : MonoBehaviour
 
         for (int i = 0; i < 30; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity,BulletContainer.transform);
+            GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity, BulletContainer.transform);
             bullet.SetActive(false);
             pooledBullets.Add(bullet);
         }
@@ -68,7 +68,7 @@ public class BulletController : MonoBehaviour
 
     public void FireBullet()
     {
-        if (bulletCount != 0&&canShoot)
+        if (bulletCount != 0 && canShoot)
         {
             StartCoroutine(BulletSpawn());
         }
@@ -78,9 +78,14 @@ public class BulletController : MonoBehaviour
     {
         canShoot = false;
         yield return new WaitForSeconds(GunController.Instance.fireRate);
-        
         GetDirection();
+        CheckingActivePooledBullet();
+        canShoot = true;
+    }
 
+
+    private void CheckingActivePooledBullet()
+    {
         for (int i = 0; i < GunController.Instance.bulletCount; i++)
         {
             if (!pooledBullets[i].activeInHierarchy)
@@ -90,12 +95,10 @@ public class BulletController : MonoBehaviour
                 bullet.SetActive(true);
                 SetBulletCount();
                 MovingBullet(bullet);
-                break;    
+                break;
             }
         }
-        canShoot = true;
     }
-
 
     private void SetBulletSpawnPosition(GameObject bullet)
     {
@@ -123,23 +126,21 @@ public class BulletController : MonoBehaviour
     {
         for (int i = 0; i < GamePlayPanel.Instance.inst_Bullets.Count; i++)
         {
-            //if (i >= bulletcount)
-            //{
-                if (GamePlayPanel.Instance.inst_Bullets[i].gameObject.activeInHierarchy)
-                {
-                    GamePlayPanel.Instance.inst_Bullets[i].gameObject.SetActive(false);
-                    break;
-                }
-            //}
+            if (GamePlayPanel.Instance.inst_Bullets[i].gameObject.activeInHierarchy)
+            {
+                GamePlayPanel.Instance.inst_Bullets[i].gameObject.SetActive(false);
+                break;
+
+            }
         }
     }
-
+    
 
     private void ChecktoReload()
     {
         if (bulletCount == 0)
         {
-            StartCoroutine(Reload());    
+            StartCoroutine(Reload());
         }
     }
 
@@ -149,23 +150,16 @@ public class BulletController : MonoBehaviour
         DeactivatingPooledBullets();
         bulletCount = GunController.Instance.bulletCount;
         GamePlayPanel.Instance.ReloadBullets(bulletCount);
-
-
     }
 
     public void DeactivatingPooledBullets()
     {
-        for(int i=0;i<pooledBullets.Count;i++)
+        for (int i = 0; i < pooledBullets.Count; i++)
         {
-            if(pooledBullets[i].activeInHierarchy)
+            if (pooledBullets[i].activeInHierarchy)
             {
                 pooledBullets[i].gameObject.SetActive(false);
             }
         }
     }
-
-
-
-
-
 }

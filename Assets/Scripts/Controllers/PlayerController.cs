@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 3;
     public float Health = 10;
     private Animator animator;
+    private bool isJumping = false;
     private Vector2 originalScale;
     public GunsTypes currentGun;
     #endregion
@@ -118,8 +119,27 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+            isJumping = true;
+            animator.SetBool("jump", true);
         }
+        else
+        {
+            isJumping = false;
+        }
+        AddJumpAnim();
         #endif
+    }
+
+    private void AddJumpAnim()
+    {
+        if(isJumping)
+        {
+            animator.SetBool("jump", true);
+        }
+        else
+        {
+            animator.SetBool("jump", false);
+        }
     }
 
     public void Jump()
