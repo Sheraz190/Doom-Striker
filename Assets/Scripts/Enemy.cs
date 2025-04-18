@@ -6,10 +6,8 @@ public class Enemy : MonoBehaviour
 {
     #region Game objects/ Variables
 
-
     private bool touchPlayer = false;
     public GameObject enemy;
-
     private EnemyPresetsValues currentEnemy;
     private GameObject player;
     [Space, Header("Variables")]
@@ -20,7 +18,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
-
     }
 
     private void OnEnable()
@@ -28,6 +25,7 @@ public class Enemy : MonoBehaviour
         ResetHealth();
         touchPlayer = false;
     }
+
     private void Update()
     {
         if (!touchPlayer)
@@ -35,9 +33,6 @@ public class Enemy : MonoBehaviour
             MoveEnemy();
         }
     }
-
-
-
 
     private void MoveEnemy()
     {
@@ -70,7 +65,4 @@ public class Enemy : MonoBehaviour
     {
         health = 4;
     }
-
-   
-
 }

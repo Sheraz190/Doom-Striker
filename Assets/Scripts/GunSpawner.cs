@@ -20,19 +20,6 @@ public class GunSpawner : MonoBehaviour
         StartCoroutine(SpawnGun());
     }
 
-    private void Update()
-    {
-        //if (Player.transform.localScale.x < 0)
-        //{
-        //    gun.transform.localScale = gunScale;
-        //}
-        //else if (Player.transform.localScale.x > 0)
-        //{
-        //    gun.transform.localScale = gunScale;
-        //}
-    }
-
-
     private IEnumerator SpawnGun()
     {
         yield return new WaitForSeconds(1.0f);
@@ -54,7 +41,6 @@ public class GunSpawner : MonoBehaviour
         FirePos.transform.SetParent(inst_gun.transform);
         FirePos.transform.localPosition = GunController.Instance.firePos;
     }
-
 
     public void ChangeGun(int index)
     {

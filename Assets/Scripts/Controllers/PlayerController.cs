@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
     private void DetectInput()
     {
         float horizontalInput = joyStick.Horizontal;
@@ -120,8 +119,7 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
             isJumping = true;
-            animator.SetBool("jump", true);
-        }
+         }
         else
         {
             isJumping = false;
@@ -169,8 +167,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    
+ 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))

@@ -7,20 +7,28 @@ public class EnemySpawner : MonoBehaviour
     public static EnemySpawner Instance;
 
     #region Game objects
+
     private List<GameObject> pooledObjects;
     [SerializeField]private GameObject enemyPrefab;
     [SerializeField] private GameObject enemyContainer;
-    [Space, Header("Variables ")]
+    [Space, Header("Variables")]
     [SerializeField] private int enemyCount = 5;
     private int direction = 12;
-
+    
     #endregion
 
     private void Start()                
     {
         Instance = this;
-       // CreatePoolObjects();
-        //StartCoroutine(SpawnEnemies());
+        CreatePoolObjects();
+        StartCoroutine(SpawnEnemies());
+        
+    }
+
+
+    private void Update()
+    {
+        
     }
 
     private void CreatePoolObjects()
@@ -49,17 +57,18 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-
     private void SelectDirection()
     {
         float num = Random.Range(0, 10);
         if (num < 5)
         {
             direction = 11;
+ 
         }
         else
         {
             direction = -11;
+            
         }
     }
 
@@ -71,7 +80,6 @@ public class EnemySpawner : MonoBehaviour
             {
                 return pooledObjects[i];
             }
-
         }
         return null;
     }

@@ -24,7 +24,6 @@ public class BulletController : MonoBehaviour
     {
         Instance = this;
         StartCoroutine(InstantiateBullets());
-
     }
 
     private void Update()
@@ -135,7 +134,6 @@ public class BulletController : MonoBehaviour
         }
     }
     
-
     private void ChecktoReload()
     {
         if (bulletCount == 0)
