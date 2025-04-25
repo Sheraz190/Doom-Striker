@@ -9,11 +9,11 @@ public class Enemy : MonoBehaviour
     public static Enemy instance;
     private bool touchPlayer = false;
     public GameObject enemy;
-    private EnemyPresetsValues currentEnemy;
     private GameObject player;
-    [Space, Header("Variables")]
     private float health;
     private Vector2 originalScale;
+    
+
 
     #endregion
 
@@ -27,8 +27,6 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        ResetHealth();
-       
         touchPlayer = false;
     }
 
@@ -42,7 +40,7 @@ public class Enemy : MonoBehaviour
 
     public void SetDirection()
     {
-        if(gameObject.transform.localPosition.x>-348)
+        if (gameObject.transform.localPosition.x > -348)
         {
             transform.localScale = new Vector2(-originalScale.x, originalScale.y);
         }
@@ -70,12 +68,12 @@ public class Enemy : MonoBehaviour
         health -= GunController.Instance.damage;
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
-
-    private void ResetHealth()
+    public void ResetEnemyData()
     {
         health = 4;
+        SetDirection();
     }
 }

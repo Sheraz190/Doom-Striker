@@ -8,94 +8,53 @@ public class EnemySpawner : MonoBehaviour
 
     #region Game objects
 
-    private List<GameObject> pooledObjects;
-    [SerializeField]private GameObject enemyPrefab;
+    public List<GameObject> pooledObjects = new List<GameObject>();
+    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject enemyContainer;
     [Space, Header("Variables")]
-    [SerializeField] private int enemyCount = 5;
+    private int enemyCount = 5;
     private int direction = 12;
-    private Vector2 originalScale;
-
 
     #endregion
 
-    private void Start()                
+    private void Start()
     {
         Instance = this;
-        CreatePoolObjects();
+        GetEnemyData();
         StartCoroutine(SpawnEnemies());
-        Transform enemyTransform = enemyPrefab.transform;
     }
 
-    private void CreatePoolObjects()
-    {
-        GameObject temp_obj;
-        pooledObjects = new List<GameObject>();
-        for (int i = 0; i < enemyCount; i++)
-        {
-            SelectDirection();
-            temp_obj = Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity,enemyContainer.transform.transform);
-            temp_obj.SetActive(false);
-            pooledObjects.Add(temp_obj);
-        }
-    }
 
     private IEnumerator SpawnEnemies()
     {
-        while (true)
+        int i = 0;
+        while (i<enemyCount)
         {
             GameObject temp_obj;
-            yield return new WaitForSeconds(3.0f);
-            temp_obj = GetPooledObjects();
+            yield return new WaitForSeconds(EnemyDataHandler.instance.SpawnRate);
             SelectDirection();
-            temp_obj.transform.position = new Vector2(direction, 0);
-            temp_obj.SetActive(true);
+            temp_obj = Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity, enemyContainer.transform.transform);
+            i++;
         }
     }
 
     private void SelectDirection()
     {
         float num = Random.Range(0, 10);
-       
+
         if (num < 5)
         {
             direction = 11;
-        
         }
         else
         {
             direction = -11;
-          
         }
     }
 
 
-    //private void SetEnemyDirection(int direction)
-    //{
-    //    Transform enemyTransform = enemyPrefab.transform;
-    //    Vector3 scale = enemyTransform.localScale;
-    //    if (direction > 0)
-    //    {
-    //        scale.x = -scale.x;
-    //        Debug.Log(" " + enemyPrefab.transform.localScale);
-    //        Debug.Log("- scale function called");
-    //    }
-    //    else
-    //    {
-    //        scale.x = Mathf.Abs(scale.x);
-    //    }
-    //}
-   
-
-    private GameObject GetPooledObjects()
+    private void GetEnemyData()
     {
-        for (int i = 0; i < enemyCount; i++)
-        {
-            if (!pooledObjects[i].activeInHierarchy)
-            {
-                return pooledObjects[i];
-            }
-        }
-        return null;
+        enemyCount = EnemyDataHandler.instance.EnemyCount;
     }
 }
