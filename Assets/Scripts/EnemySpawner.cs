@@ -14,7 +14,9 @@ public class EnemySpawner : MonoBehaviour
     [Space, Header("Variables")]
     [SerializeField] private int enemyCount = 5;
     private int direction = 12;
-    
+    private Vector2 originalScale;
+
+
     #endregion
 
     private void Start()                
@@ -22,13 +24,7 @@ public class EnemySpawner : MonoBehaviour
         Instance = this;
         CreatePoolObjects();
         StartCoroutine(SpawnEnemies());
-        
-    }
-
-
-    private void Update()
-    {
-        
+        Transform enemyTransform = enemyPrefab.transform;
     }
 
     private void CreatePoolObjects()
@@ -60,17 +56,36 @@ public class EnemySpawner : MonoBehaviour
     private void SelectDirection()
     {
         float num = Random.Range(0, 10);
+       
         if (num < 5)
         {
             direction = 11;
- 
+        
         }
         else
         {
             direction = -11;
-            
+          
         }
     }
+
+
+    //private void SetEnemyDirection(int direction)
+    //{
+    //    Transform enemyTransform = enemyPrefab.transform;
+    //    Vector3 scale = enemyTransform.localScale;
+    //    if (direction > 0)
+    //    {
+    //        scale.x = -scale.x;
+    //        Debug.Log(" " + enemyPrefab.transform.localScale);
+    //        Debug.Log("- scale function called");
+    //    }
+    //    else
+    //    {
+    //        scale.x = Mathf.Abs(scale.x);
+    //    }
+    //}
+   
 
     private GameObject GetPooledObjects()
     {
