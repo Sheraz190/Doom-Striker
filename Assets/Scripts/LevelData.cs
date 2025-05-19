@@ -26,6 +26,7 @@ public class LevelData : ScriptableObject
         {
             if (enemyData[i].levelNumber == index)
             {
+                Debug.Log("Level number: " + enemyData[i].levelNumber);
                 return enemyData[i];
             }
         }

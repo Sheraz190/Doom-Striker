@@ -8,21 +8,21 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
-    #region Variables
-    public GameObject player;
+    #region Game Objects/ Variables
     public Rigidbody2D rb;
+    public GameObject player;
+    private Animator animator;
+    private Vector2 originalScale;
     public FixedJoystick joyStick;
-    bool isGrounded = true;
-    [SerializeField] private Animation walkAnim;
-    private bool isWalking = false;
-    [Space, Header("Float Variables")]
+   
+    [Space, Header("Variables")]
+    public float Health = 10;
     public float jumpForce = 1;
     public float moveSpeed = 3;
-    public float Health = 10;
-    private Animator animator;
     private bool isJumping = false;
-    private Vector2 originalScale;
-    public GunsTypes currentGun;
+    private bool isGrounded = true;
+    private bool isWalking = false;
+
     #endregion
 
     private void Start()

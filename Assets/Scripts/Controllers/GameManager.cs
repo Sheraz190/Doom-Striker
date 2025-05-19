@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         mobileCanvas.gameObject.SetActive(false);
 #endif
-
     }
 
     public void CheckPlayerHealth()

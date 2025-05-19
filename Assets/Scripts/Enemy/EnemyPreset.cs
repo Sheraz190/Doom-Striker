@@ -18,9 +18,7 @@ public class EnemyPresetsValues
     public int health;
     public int scoreCountOnKill;
     public int enemyHitValue;
-    //public GameObject enemyPrefab;
-
-}
+ }
 
 [CreateAssetMenu(fileName = "EnemyPresets", menuName = "Game/EnemyPresets", order = 1)]
 

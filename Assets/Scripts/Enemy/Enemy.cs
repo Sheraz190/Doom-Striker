@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static Enemy instance;
     #region Game objects/ Variables
 
-    public static Enemy instance;
-    private bool touchPlayer = false;
     public GameObject enemy;
     private GameObject player;
-    private float health;
+
     private Vector2 originalScale;
+
+    private float health;
+    private bool touchPlayer = false;
+    
     
 
 

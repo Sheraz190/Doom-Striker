@@ -2,17 +2,22 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    #region Variables
     public static GunController Instance;
-   [SerializeField]private  GunDataController gunDataController;
-    private GunProperties currentGun;
-    public GameObject gunPrefab;
+    #region Variables
+
+    [SerializeField]private  GunDataController gunDataController;
     public GameObject bullet;
+    public GameObject gunPrefab;
+    private GunProperties currentGun;
+
     public Vector3 firePos;
+
     public int bulletCount;
+
+    public float damage;
     public float fireRate;
     public float reloadTime;
-    public float damage;
+
     #endregion
 
     private void Start()
@@ -25,11 +30,14 @@ public class GunController : MonoBehaviour
     public void GetGunData(int index)
     {
         currentGun = gunDataController.GetGun(index);
-        bulletCount = currentGun.BulletCount;
-        fireRate = currentGun.FireRate;
-        reloadTime = currentGun.ReloadTime;
         damage = currentGun.Damage;
-        gunPrefab = currentGun.GunPrefab;
         firePos = currentGun.firepos;
+        fireRate = currentGun.FireRate;
+        gunPrefab = currentGun.GunPrefab;
+        reloadTime = currentGun.ReloadTime;
+        bulletCount = currentGun.BulletCount;
     }
+
+
+
 }

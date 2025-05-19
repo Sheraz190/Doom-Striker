@@ -18,9 +18,8 @@ public class EnemyDataHandler : MonoBehaviour
     private void Start()
     {
         instance = this;
-        GetEnemyData(1);
+        GetEnemyData(2);
     }
-
 
     private void GetEnemyData(int index)
     {
@@ -28,5 +27,4 @@ public class EnemyDataHandler : MonoBehaviour
         EnemyCount = currentEnemy.enemyCount;
         SpawnRate = currentEnemy.spawnRate;
     }
-
 }

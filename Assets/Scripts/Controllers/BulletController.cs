@@ -4,19 +4,23 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class BulletController : MonoBehaviour
 {
-    #region Variables/Game Objects 
     public static BulletController Instance;
-    [SerializeField] private GameObject bulletPrefab;
-    public int bulletCount;
+
+    #region Variables/Game Objects 
+
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed = 500f;
     [SerializeField] private GameObject BulletContainer;
 
-    private Vector3 spawnPosition;
+    public int bulletCount;
     public Transform gunPos;
+    private Vector3 spawnPosition;
+    private List<GameObject> pooledBullets;
+
     private bool canShoot = true;
     private float direction = 0.0f;
-    private List<GameObject> pooledBullets;
+   
 
     #endregion
 

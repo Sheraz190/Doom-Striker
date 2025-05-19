@@ -15,12 +15,15 @@ public enum GunsTypes
 public class GunProperties
 {
     public GunsTypes GunType;
+    public GameObject GunPrefab;
+
     public int GunIndex;
     public int BulletCount;
+
+    public float Damage;
     public float FireRate;
     public float ReloadTime;
-    public float Damage;
-    public GameObject GunPrefab;
+  
     public Vector3 firepos = new Vector3(0, 0, 0);
 }
 

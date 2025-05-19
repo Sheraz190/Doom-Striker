@@ -8,10 +8,12 @@ public class EnemySpawner : MonoBehaviour
 
     #region Game objects
 
-    public List<GameObject> pooledObjects = new List<GameObject>();
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject enemyContainer;
+    public List<GameObject> pooledObjects = new List<GameObject>();
+    
     [Space, Header("Variables")]
+
     private int enemyCount = 5;
     private int direction = 12;
 
@@ -23,7 +25,6 @@ public class EnemySpawner : MonoBehaviour
         GetEnemyData();
         StartCoroutine(SpawnEnemies());
     }
-
 
     private IEnumerator SpawnEnemies()
     {
@@ -38,6 +39,12 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void SpawningEnemies()
+    { 
+        
+    }
+
+
     private void SelectDirection()
     {
         float num = Random.Range(0, 10);
@@ -51,7 +58,6 @@ public class EnemySpawner : MonoBehaviour
             direction = -11;
         }
     }
-
 
     private void GetEnemyData()
     {
