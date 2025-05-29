@@ -22,14 +22,24 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        GetEnemyData();
+    }
+
+
+
+    public void StartTheGame()
+    {
+        
+        //GetEnemyData();
         StartCoroutine(SpawnEnemies());
     }
+    
+
 
     private IEnumerator SpawnEnemies()
     {
+        Debug.Log("Spawn functon called");
         int i = 0;
-        while (i<enemyCount)
+        while (i<5)
         {
             GameObject temp_obj;
             yield return new WaitForSeconds(EnemyDataHandler.instance.SpawnRate);
@@ -37,11 +47,6 @@ public class EnemySpawner : MonoBehaviour
             temp_obj = Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity, enemyContainer.transform.transform);
             i++;
         }
-    }
-
-    private void SpawningEnemies()
-    { 
-        
     }
 
 
@@ -61,6 +66,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void GetEnemyData()
     {
+        Debug.Log("enemy function called");
         enemyCount = EnemyDataHandler.instance.EnemyCount;
+       
     }
 }

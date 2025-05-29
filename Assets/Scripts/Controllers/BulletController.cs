@@ -32,14 +32,16 @@ public class BulletController : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
+        //    if (EventSystem.current.IsPointerOverGameObject())
+        //    {
+        //        return;
+        //    }
             FireBullet();
         }
+#endif
     }
     private IEnumerator InstantiateBullets()
     {

@@ -38,7 +38,7 @@ public class GamePlayPanel : MonoBehaviour
             RectTransform bulletRect = bullet.GetComponent<RectTransform>();
             rect.anchoredPosition = spawnPos;
             bulletRect.anchoredPosition = spawnPos;
-            spawnPos.x += 24;
+            spawnPos.x += 40;
             inst_Bullets.Add(bullet);
             inst_Shells.Add(emptyobj);
         }

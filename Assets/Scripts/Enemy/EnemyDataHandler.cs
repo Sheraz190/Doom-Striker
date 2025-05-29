@@ -15,9 +15,14 @@ public class EnemyDataHandler : MonoBehaviour
 
     #endregion
 
-    private void Start()
+
+    private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
+     
         GetEnemyData(2);
     }
 
