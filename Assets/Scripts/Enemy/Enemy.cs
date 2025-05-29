@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
 
     private void TakeDamage()
     {
-        health -= GunController.Instance.damage;
+       // health -= GunController.Instance.damage;
         if (health <= 0)
         {
             Destroy(gameObject);

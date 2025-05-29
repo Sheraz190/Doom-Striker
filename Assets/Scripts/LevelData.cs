@@ -8,7 +8,8 @@ using System;
 public class EnemyData
 {
     public int levelNumber;
-    public EnemyType enemyType;
+    //public EnemyType enemyType;
+    public List<EnemyType> enemyTypeList=new List<EnemyType>();
     public int enemyCount;
     public float spawnRate;
 }
