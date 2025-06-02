@@ -30,15 +30,21 @@ public class BulletController : MonoBehaviour
         StartCoroutine(InstantiateBullets());
     }
 
+    private void OnEnable()
+    {
+        Debug.Log("can shot value  " + canShoot);
+        canShoot = true;
+    }
+
     private void Update()
     {
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
-        //    if (EventSystem.current.IsPointerOverGameObject())
-        //    {
-        //        return;
-        //    }
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             FireBullet();
         }
 #endif
@@ -78,6 +84,7 @@ public class BulletController : MonoBehaviour
             StartCoroutine(BulletSpawn());
         }
     }
+
 
     private IEnumerator BulletSpawn()
     {
@@ -166,4 +173,11 @@ public class BulletController : MonoBehaviour
             }
         }
     }
+
+    public void DisplayBullets()
+    {
+        GamePlayPanel.Instance.DisplayShells(GunController.Instance.bulletCount);
+    }
+
+
 }

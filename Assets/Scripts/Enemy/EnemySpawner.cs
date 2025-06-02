@@ -11,63 +11,39 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject enemyContainer;
     public List<GameObject> pooledObjects = new List<GameObject>();
-    
+
+
     [Space, Header("Variables")]
 
-    private int enemyCount = 5;
-    private int direction = 12;
+    private int direction = 0;
+  
 
     #endregion
 
     private void Start()
     {
         Instance = this;
+        SpawnEnemies();
     }
 
-
-
-    public void StartTheGame()
+    public void SpawnEnemies()
     {
-        
-        //GetEnemyData();
-        StartCoroutine(SpawnEnemies());
-    }
-    
-
-
-    private IEnumerator SpawnEnemies()
-    {
-        Debug.Log("Spawn functon called");
-        int i = 0;
-        while (i<5)
-        {
-            GameObject temp_obj;
-            yield return new WaitForSeconds(EnemyDataHandler.instance.SpawnRate);
-            SelectDirection();
-            temp_obj = Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity, enemyContainer.transform.transform);
-            i++;
-        }
+        SelectDirection();
+        Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity, enemyContainer.transform.transform);
     }
 
 
     private void SelectDirection()
     {
         float num = Random.Range(0, 10);
-
-        if (num < 5)
+        if(num<5)
         {
-            direction = 11;
+            direction = -15;
         }
         else
         {
-            direction = -11;
+            direction = 15;
         }
     }
 
-    private void GetEnemyData()
-    {
-        Debug.Log("enemy function called");
-        enemyCount = EnemyDataHandler.instance.EnemyCount;
-       
-    }
 }

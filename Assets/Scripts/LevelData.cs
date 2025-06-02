@@ -21,12 +21,10 @@ public class LevelData : ScriptableObject
 
     public EnemyData GetLevelData(int index)
     {
-
         for (int i = 0; i < enemyData.Count; i++)
         {
             if (enemyData[i].levelNumber == index)
             {
-                Debug.Log("Level number: " + enemyData[i].levelNumber);
                 return enemyData[i];
             }
         }

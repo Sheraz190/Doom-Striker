@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour
     public Vector3 firePos;
 
     public int bulletCount;
-
+    public bool canbrustFire;
     public float damage;
     public float fireRate;
     public float reloadTime;
@@ -23,9 +23,16 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        GetGunData(0);
         GamePlayPanel.Instance.DisplayShells(bulletCount);
+
     }
+
+    private void Awake()
+    {
+        GetGunData(0);
+    }
+
+
 
     public void GetGunData(int index)
     {
@@ -37,7 +44,4 @@ public class GunController : MonoBehaviour
         reloadTime = currentGun.ReloadTime;
         bulletCount = currentGun.BulletCount;
     }
-
-
-
 }

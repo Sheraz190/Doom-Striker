@@ -72,6 +72,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            EnemySpawner.Instance.SpawnEnemies();
         }
     }
     public void ResetEnemyData()

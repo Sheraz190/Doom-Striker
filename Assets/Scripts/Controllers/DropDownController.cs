@@ -5,14 +5,16 @@ using UnityEngine.UI;
 using TMPro;
 public class DropDownController : MonoBehaviour
 {
+    public static DropDownController Instance;
     #region Variables/GameObjects 
 
-    [SerializeField] private TMP_Dropdown dropDown;
-
+    public TMP_Dropdown dropDown;
+    
     #endregion
 
     private void Start()
     {
+        Instance = this;
         dropDown.value = 0;
         dropDown.onValueChanged.AddListener(MethodOnValueChanged);
     }

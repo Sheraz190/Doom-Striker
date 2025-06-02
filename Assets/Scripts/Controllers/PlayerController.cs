@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Vector2 originalScale;
     public FixedJoystick joyStick;
-   
+    private Vector3 currentPosofPlayer;
     [Space, Header("Variables")]
     public float Health = 10;
     public float jumpForce = 1;
@@ -31,6 +31,20 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale;
         animator = GetComponent<Animator>();
+        CheckPlayerPosition();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(ResetPostion());
+    }
+
+    private IEnumerator ResetPostion()
+    {
+        yield return null;
+        {
+            ResetPlayerPosition();
+        }
     }
     private void Update()
     {
@@ -175,6 +189,17 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    private void ResetPlayerPosition()
+    {
+        player.transform.localPosition = currentPosofPlayer;
+    }
+
+    private void CheckPlayerPosition()
+    {
+        currentPosofPlayer = player.transform.localPosition;
+    }
+
 }
 
 

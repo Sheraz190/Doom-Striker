@@ -19,7 +19,7 @@ public class GunProperties
 
     public int GunIndex;
     public int BulletCount;
-
+    public bool canBrustFire;
     public float Damage;
     public float FireRate;
     public float ReloadTime;

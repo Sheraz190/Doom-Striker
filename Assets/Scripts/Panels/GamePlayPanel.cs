@@ -29,6 +29,7 @@ public class GamePlayPanel : MonoBehaviour
 
     public void DisplayShells(int bulletCount)
     {
+        Debug.Log("Display method called");
         Vector2 spawnPos = new Vector2(-100, -20);
         for (int i = 0; i < bulletCount; i++)
         {
