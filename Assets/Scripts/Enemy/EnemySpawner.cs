@@ -38,11 +38,11 @@ public class EnemySpawner : MonoBehaviour
         float num = Random.Range(0, 10);
         if(num<5)
         {
-            direction = -15;
+            direction = -25;
         }
         else
         {
-            direction = 15;
+            direction = 25;
         }
     }
 

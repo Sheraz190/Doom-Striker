@@ -19,11 +19,10 @@ public class GunProperties
 
     public int GunIndex;
     public int BulletCount;
-    public bool canBrustFire;
     public float Damage;
     public float FireRate;
     public float ReloadTime;
-  
+    public bool brustFire;
     public Vector3 firepos = new Vector3(0, 0, 0);
 }
 

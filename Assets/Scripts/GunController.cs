@@ -17,6 +17,7 @@ public class GunController : MonoBehaviour
     public float damage;
     public float fireRate;
     public float reloadTime;
+    public bool brustFire;
 
     #endregion
 
@@ -32,8 +33,6 @@ public class GunController : MonoBehaviour
         GetGunData(0);
     }
 
-
-
     public void GetGunData(int index)
     {
         currentGun = gunDataController.GetGun(index);
@@ -43,5 +42,7 @@ public class GunController : MonoBehaviour
         gunPrefab = currentGun.GunPrefab;
         reloadTime = currentGun.ReloadTime;
         bulletCount = currentGun.BulletCount;
+        brustFire = currentGun.brustFire;
+        
     }
 }

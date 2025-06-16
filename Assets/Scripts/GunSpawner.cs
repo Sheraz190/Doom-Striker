@@ -25,7 +25,6 @@ public class GunSpawner : MonoBehaviour
 
     private IEnumerator SpawnGun()
     {
-        Debug.Log("Spawn gun called");
         yield return null;
         if (Inst_Gun != null)
         {

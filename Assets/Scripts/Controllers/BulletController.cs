@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class BulletController : MonoBehaviour
+
+ public class BulletController : MonoBehaviour
 {
     public static BulletController Instance;
 
@@ -10,7 +11,7 @@ public class BulletController : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private float bulletSpeed = 500f;
+    [SerializeField] private float bulletSpeed = 700f;
     [SerializeField] private GameObject BulletContainer;
 
     public int bulletCount;
@@ -20,7 +21,9 @@ public class BulletController : MonoBehaviour
 
     private bool canShoot = true;
     private float direction = 0.0f;
-   
+    private bool brustFire = true;
+
+
 
     #endregion
 
@@ -32,7 +35,6 @@ public class BulletController : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("can shot value  " + canShoot);
         canShoot = true;
     }
 
@@ -79,17 +81,40 @@ public class BulletController : MonoBehaviour
 
     public void FireBullet()
     {
+        brustFire = true;
         if (bulletCount != 0 && canShoot)
         {
-            StartCoroutine(BulletSpawn());
+            if (GunController.Instance.brustFire)
+            {
+                StartCoroutine(Fire());
+            }
+            else
+            {
+                StartCoroutine(BulletSpawn());
+            }
         }
     }
 
+    private IEnumerator Fire()
+    {
+        while(brustFire)
+        {
+            yield return new WaitForSeconds(0.25f);
+           StartCoroutine(BulletSpawn());
+        }
+        brustFire = true;
+    }
+    
 
-    private IEnumerator BulletSpawn()
+    public void StopFire()
+    {
+        brustFire = false;
+    }
+ 
+    private  IEnumerator BulletSpawn()
     {
         canShoot = false;
-        yield return new WaitForSeconds(GunController.Instance.fireRate);
+        yield return new WaitForSeconds(0.08f);
         GetDirection();
         CheckingActivePooledBullet();
         canShoot = true;
@@ -146,7 +171,7 @@ public class BulletController : MonoBehaviour
             }
         }
     }
-    
+
     private void ChecktoReload()
     {
         if (bulletCount == 0)
@@ -178,6 +203,4 @@ public class BulletController : MonoBehaviour
     {
         GamePlayPanel.Instance.DisplayShells(GunController.Instance.bulletCount);
     }
-
-
 }

@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.Find("Player");
         originalScale = transform.localScale;
+        health = 10;
         instance = this;
         SetDirection();
     }
@@ -69,15 +70,23 @@ public class Enemy : MonoBehaviour
     private void TakeDamage()
     {
         health -= GunController.Instance.damage;
+        
         if (health <= 0)
         {
             Destroy(gameObject);
+            StartCoroutine(WaitTime());
             EnemySpawner.Instance.SpawnEnemies();
         }
     }
+
+    private IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(2f);
+    }
+
     public void ResetEnemyData()
     {
-        health = 4;
+        health = 10;
         SetDirection();
     }
 }

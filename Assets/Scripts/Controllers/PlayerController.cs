@@ -21,7 +21,9 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 3;
     private bool isJumping = false;
     private bool isGrounded = true;
-    private bool isWalking = false;
+   
+    private bool canDoublejump = true;
+    private int jumpCount = 0;
 
     #endregion
 
@@ -69,37 +71,43 @@ public class PlayerController : MonoBehaviour
 
     private void Movings()
     {
-#if UNITY_EDITOR
-        if (Input.GetKey(KeyCode.D))
-        {
-            isWalking = true;
-            animator.SetBool("isWalk", true);
-           transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            isWalking = true;
-            animator.SetBool("isWalk", true);
-            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            isWalking = false;
-        }
-        SetWalkBool();
-#else
-        animator.SetBool("isWalk", true);
+//#if UNITY_EDITOR
+//        if (Input.GetKey(KeyCode.D))
+//        {
+//            isWalking = true;
+//            animator.SetBool("isWalk", true);
+//            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+//        }
+//        else if (Input.GetKey(KeyCode.A))
+//        {
+//            isWalking = true;
+//            animator.SetBool("isWalk", true);
+//            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+//        }
+//        else
+//        {
+//            isWalking = false;
+//        }
+       
+//#else
+        
         rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, rb.velocity.y);
-#endif
+        
+       
+        
+//#endif
     }
 
-    private void SetWalkBool()
+    public void SetWalkFalse()
     {
-        if (!isWalking)
-        {
-            animator.SetBool("isWalk", false);
-        }
+        animator.SetBool("isWalk", false);
     }
+
+    public void SetWalkTrue()
+    {
+        animator.SetBool("isWalk", true);
+    }
+
     private void ChangeDirectionForEditor()
     {
         if (Input.GetKeyDown(KeyCode.D))
@@ -156,9 +164,20 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded|| canDoublejump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            jumpCount++;
+            jumpForce = 250;
+            CheckIfDoubleJump();
+        }
+    }
+
+    private void CheckIfDoubleJump()
+    {
+        if(jumpCount>=2)
+        {
+            canDoublejump = false;
         }
     }
 
@@ -167,6 +186,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            jumpForce = 500;
+            if (jumpCount>=2)
+            {
+                jumpCount = 0;
+                canDoublejump = true;
+            }
+            
         }
         if(collision.gameObject.CompareTag("Enemy"))
         {
