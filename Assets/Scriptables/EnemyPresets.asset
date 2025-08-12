@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPresets:
   - enemyType: 1
-    health: 3
+    health: 4
     scoreCountOnKill: 1
     enemyHitValue: 1
-    enemyPrefab: {fileID: 6138835853303260659, guid: a18a3e1ce23e21b408821f2726ba273e, type: 3}
   - enemyType: 2
-    health: 3
+    health: 6
     scoreCountOnKill: 2
     enemyHitValue: 2
-    enemyPrefab: {fileID: 6138835853303260659, guid: df175d22ccd37d94089e1baa179306c4, type: 3}
   - enemyType: 3
-    health: 5
+    health: 9
     scoreCountOnKill: 3
     enemyHitValue: 4
-    enemyPrefab: {fileID: 0}
   - enemyType: 4
     health: 10
     scoreCountOnKill: 7
     enemyHitValue: 6
-    enemyPrefab: {fileID: 0}
+  - enemyType: 5
+    health: 15
+    scoreCountOnKill: 7
+    enemyHitValue: 6

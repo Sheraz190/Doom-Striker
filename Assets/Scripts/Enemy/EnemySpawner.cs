@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
 
     #region Game objects
 
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private List<GameObject> enemyPrefabs;
     [SerializeField] private GameObject enemyContainer;
     public List<GameObject> pooledObjects = new List<GameObject>();
 
@@ -29,9 +29,14 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemies()
     {
         SelectDirection();
-        Instantiate(enemyPrefab, new Vector2(direction, 0), Quaternion.identity, enemyContainer.transform.transform);
+        Instantiate(enemyPrefabs[SelectEnemy()], new Vector2(direction, 0), Quaternion.identity, enemyContainer.transform.transform);
     }
 
+    private int  SelectEnemy()
+    {
+        int num = Random.Range(0, enemyPrefabs.Count);
+        return num;
+    }
 
     private void SelectDirection()
     {

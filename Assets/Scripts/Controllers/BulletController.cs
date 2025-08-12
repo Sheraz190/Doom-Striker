@@ -22,8 +22,8 @@ using UnityEngine.EventSystems;
     private bool canShoot = true;
     private float direction = 0.0f;
     private bool brustFire = true;
-
-
+    private float pressStartTime = 0.0f;
+    private float TotalPressTime = 0.0f;
 
     #endregion
 
@@ -40,16 +40,16 @@ using UnityEngine.EventSystems;
 
     private void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-            FireBullet();
-        }
-#endif
+//#if UNITY_EDITOR
+//        if (Input.GetMouseButtonDown(0))
+//        {
+//            if (EventSystem.current.IsPointerOverGameObject())
+//            {
+//                return;
+//            }
+//            FireBullet();
+//        }
+//#endif
     }
     private IEnumerator InstantiateBullets()
     {
@@ -79,30 +79,35 @@ using UnityEngine.EventSystems;
         }
     }
 
+
+    private IEnumerator CalculateTimeforButtonPress()
+    {
+        yield return new WaitForSeconds(0.2f);
+        TotalPressTime = Time.time;
+
+    }
     public void FireBullet()
     {
-        brustFire = true;
-        if (bulletCount != 0 && canShoot)
-        {
-            if (GunController.Instance.brustFire)
-            {
-                StartCoroutine(Fire());
-            }
-            else
-            {
-                StartCoroutine(BulletSpawn());
-            }
-        }
+        //pressStartTime = Time.time;
+
+        //if (bulletCount != 0 && canShoot)
+        //{
+        //    if (GunController.Instance.brustFire)
+        //    {
+        //        StartCoroutine(Fire());
+        //    }
+        //    else
+        //    {
+        //        StartCoroutine(BulletSpawn());
+        //    }
+        //}
+
+        Fire();
     }
 
-    private IEnumerator Fire()
+    private void Fire()
     {
-        while(brustFire)
-        {
-            yield return new WaitForSeconds(0.25f);
-           StartCoroutine(BulletSpawn());
-        }
-        brustFire = true;
+        StartCoroutine(BulletSpawn());
     }
     
 

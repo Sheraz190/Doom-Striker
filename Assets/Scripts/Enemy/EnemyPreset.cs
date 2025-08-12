@@ -5,10 +5,11 @@ using System;
 public enum EnemyType
 {
     None = 0,
-    Grunt = 1,
-    Sergeant = 2,
-    Lieutenant = 3,
-    Commander = 4
+    Chicken = 1,
+    Bunny = 2,
+    Rino = 3,
+    Turtle = 4,
+    Chameleon=5
 }
 
 [Serializable]

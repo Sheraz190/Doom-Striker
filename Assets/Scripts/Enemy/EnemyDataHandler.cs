@@ -12,6 +12,7 @@ public class EnemyDataHandler : MonoBehaviour
     public LevelData levelData;
     public int EnemyCount = 0;
     public float SpawnRate = 0.0f;
+    public int enemyHealth=0;
 
     #endregion
 

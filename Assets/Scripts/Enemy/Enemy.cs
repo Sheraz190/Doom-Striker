@@ -64,6 +64,24 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             touchPlayer = true;
+            
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            GameManager.Instance.ActionstoTakeOnEnemyCollision();
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+          
+            //GameManager.Instance.ActionstoTakeOnEnemyCollision();
         }
     }
 
@@ -76,6 +94,10 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             StartCoroutine(WaitTime());
             EnemySpawner.Instance.SpawnEnemies();
+            ScoreManager.instance.score += 5;
+            ScoreManager.instance.SetHighScore();
+            //ScoreManager.instance.DisplayScore();
+            //ScoreManager.instance.SetHighScore();
         }
     }
 
