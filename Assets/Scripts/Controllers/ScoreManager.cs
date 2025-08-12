@@ -45,10 +45,6 @@ public class ScoreManager : MonoBehaviour
 
     public  int  GetHighScore()
     {
-        Debug.Log("MEthod Called");
-        PlayerPrefs.SetInt("HighScore", 0);
-        PlayerPrefs.Save();
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
         return highScore;
     }
 
