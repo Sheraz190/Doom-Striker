@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
- public class BulletController : MonoBehaviour
+public class BulletController : MonoBehaviour
 {
     public static BulletController Instance;
 
@@ -21,9 +21,7 @@ using UnityEngine.EventSystems;
 
     private bool canShoot = true;
     private float direction = 0.0f;
-    private bool brustFire = true;
-    private float pressStartTime = 0.0f;
-    private float TotalPressTime = 0.0f;
+
 
     #endregion
 
@@ -40,18 +38,18 @@ using UnityEngine.EventSystems;
 
     private void Update()
     {
-//#if UNITY_EDITOR
-//        if (Input.GetMouseButtonDown(0))
-//        {
-//            if (EventSystem.current.IsPointerOverGameObject())
-//            {
-//                return;
-//            }
-//            FireBullet();
-//        }
-//#endif
+        //#if UNITY_EDITOR
+        //        if (Input.GetMouseButtonDown(0))
+        //        {
+        //            if (EventSystem.current.IsPointerOverGameObject())
+        //            {
+        //                return;
+        //            }
+        //            FireBullet();
+        //        }
+        //#endif
     }
-    private IEnumerator InstantiateBullets()
+    public IEnumerator InstantiateBullets()
     {
 
         yield return new WaitForSeconds(0.5f);
@@ -80,12 +78,7 @@ using UnityEngine.EventSystems;
     }
 
 
-    private IEnumerator CalculateTimeforButtonPress()
-    {
-        yield return new WaitForSeconds(0.2f);
-        TotalPressTime = Time.time;
 
-    }
     public void FireBullet()
     {
         //pressStartTime = Time.time;
@@ -109,21 +102,24 @@ using UnityEngine.EventSystems;
     {
         StartCoroutine(BulletSpawn());
     }
-    
+
 
     public void StopFire()
     {
-        brustFire = false;
+        //brustFire = false;
     }
- 
-    private  IEnumerator BulletSpawn()
+
+    private IEnumerator BulletSpawn()
     {
         canShoot = false;
         yield return new WaitForSeconds(0.08f);
         GetDirection();
         CheckingActivePooledBullet();
         canShoot = true;
+       
+       
     }
+
 
 
     private void CheckingActivePooledBullet()
@@ -135,6 +131,7 @@ using UnityEngine.EventSystems;
                 GameObject bullet = pooledBullets[i];
                 SetBulletSpawnPosition(bullet);
                 bullet.SetActive(true);
+                StartCoroutine(GameManager.Instance.SpawnParticles());
                 SetBulletCount();
                 MovingBullet(bullet);
                 break;
@@ -146,6 +143,7 @@ using UnityEngine.EventSystems;
     {
         spawnPosition = new Vector3(GunSpawner.Instance.FirePos.transform.position.x, GunSpawner.Instance.FirePos.transform.position.y, 0);
         bullet.transform.position = spawnPosition;
+        GameManager.Instance.fireParticle.transform.position = spawnPosition;
     }
 
     private void SetBulletCount()

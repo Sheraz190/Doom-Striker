@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,13 +9,11 @@ public class Enemy : MonoBehaviour
 
     public GameObject enemy;
     private GameObject player;
-
     private Vector2 originalScale;
-
     private float health;
     private bool touchPlayer = false;
-    
-    
+    private Vector3 hitPosition;
+
 
 
     #endregion
@@ -27,6 +25,8 @@ public class Enemy : MonoBehaviour
         health = 10;
         instance = this;
         SetDirection();
+
+        
     }
 
     private void OnEnable()
@@ -40,13 +40,54 @@ public class Enemy : MonoBehaviour
         {
             MoveEnemy();
         }
+
+    }
+
+    public int GetPlayerSide()
+    {
+        if (player == null) return 0;
+
+        if (player.transform.position.x < transform.position.x)
+        {
+            // Player is on the left side
+            return -1;
+        }
+        else if (player.transform.position.x > transform.position.x)
+        {
+            // Player is on the right side
+            return 1;
+        }
+        else
+        {
+            // Player is exactly aligned on X
+            return 0;
+        }
     }
 
     public void SetDirection()
     {
-        if (gameObject.transform.localPosition.x > -348)
+        //if (gameObject.transform.localPosition.x -player.transform.position.x <-198)
+        //{
+        //    transform.localScale = new Vector2(originalScale.x, originalScale.y);
+        //}
+        //else
+        //{
+        //    transform.localScale = new Vector2(-originalScale.x, originalScale.y);
+        //}
+
+        int side = GetPlayerSide();
+
+        if (side == -1)
         {
             transform.localScale = new Vector2(-originalScale.x, originalScale.y);
+        }
+        else if (side == 1)
+        {
+            transform.localScale = new Vector2(originalScale.x, originalScale.y);
+        }
+        else
+        {
+            Debug.Log("Player is directly aligned with enemy");
         }
     }
     private void MoveEnemy()
@@ -60,50 +101,65 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             TakeDamage();
+            hitPosition = collision.contacts[0].point;
         }
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player") )
         {
-            touchPlayer = true;
-            
+            ApplyForceonEnemy();
+        }
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+           // Destroy(gameObject);
         }
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
+        
+    private void ApplyForceonEnemy()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
+        //Vector2 bounceDirection = (transform.position - player.transform.position).normalized;
+        // rb.velocity = Vector2.zero;
+        //rb.AddForce(bounceDirection * bounceForce, ForceMode2D.Impulse);
 
-            GameManager.Instance.ActionstoTakeOnEnemyCollision();
-        }
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-          
-            //GameManager.Instance.ActionstoTakeOnEnemyCollision();
-        }
+        // transform.Translate(-Time.deltaTime, 0, 0);
+        float direction = (transform.position.x < player.transform.position.x) ? -1f : 1f;
+        transform.position = new Vector3(transform.position.x + (2.5f * direction),transform.position.y,0);
+      
     }
 
     private void TakeDamage()
     {
         health -= GunController.Instance.damage;
         
-        if (health <= 0)
+        if (health <= 0&&health>0- GunController.Instance.damage)
         {
-            Destroy(gameObject);
+            StartCoroutine(ApplyBloodParticle());
             StartCoroutine(WaitTime());
             EnemySpawner.Instance.SpawnEnemies();
-            ScoreManager.instance.score += 5;
+            ScoreManager.instance.score += 50;
+            ScoreManager.instance.UpdateScore();
             ScoreManager.instance.SetHighScore();
-            //ScoreManager.instance.DisplayScore();
-            //ScoreManager.instance.SetHighScore();
         }
+    }
+
+    private IEnumerator ApplyBloodParticle()
+    {
+        touchPlayer = true;
+        GameManager.Instance.bloodParticle.transform.position = hitPosition;
+        GameManager.Instance.bloodParticle.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
+        GameManager.Instance.bloodParticle.SetActive(false);
+    }
+
+
+
+    public void ResetEnemy()
+    {
+        Destroy(gameObject);
     }
 
     private IEnumerator WaitTime()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.3f);
     }
 
     public void ResetEnemyData()

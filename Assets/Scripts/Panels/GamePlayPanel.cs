@@ -21,10 +21,16 @@ public class GamePlayPanel : MonoBehaviour
     private void Start()
     {
         Instance = this;
+
+    }
+
+    private void Update()
+    {
+        DisplayHealth();
     }
     public void DisplayHealth()
     {
-      //  playerHealthText.text = "Health: " + PlayerController.Instance.Health;
+      playerHealthText.text = "Health: " + PlayerController.Instance.Health;
     }
 
     public void DisplayShells(int bulletCount)

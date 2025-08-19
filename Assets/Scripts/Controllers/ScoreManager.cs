@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
     public int highScore=0;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highscoreText;
-  
+    [SerializeField] private TextMeshProUGUI highScoreTextonGamePlay;
 
     #endregion
 
@@ -20,6 +20,13 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+        score = 0;
+       
+    }
+    private void OnEnable()
+    {
+        UpdateScore();
+        updateHighScoreOnGamePlay();
     }
 
     public void SetHighScore()
@@ -30,49 +37,36 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore);
             PlayerPrefs.Save();
             highScore = PlayerPrefs.GetInt("HighScore", 0);
+            updateHighScoreOnGamePlay();
         }
     }
 
-
-
-    //public void TestMethod()
-    //{
-    //    PlayerPrefs.SetInt("HighScore", 75);
-    //    PlayerPrefs.Save();
-    //    highScore = PlayerPrefs.GetInt("HighScore", 0);
-    //    Debug.Log("High Score after testing is : " + highScore);
-    //}
+    private void updateHighScoreOnGamePlay()
+    {
+        highScoreTextonGamePlay.text = "High Score: " + GetHighScore();
+    }
+   
 
     public  int  GetHighScore()
     {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
         return highScore;
     }
 
 
 
-    //private void GetHighScore()
-    //{
-    //    highScore = PlayerPrefs.GetInt("HighScore", 0);
-    //}
+    public void UpdateScore()
+    {
+        scoreText.text = " ";
+        scoreText.text = "Score: "+ score;
+       
+    }
 
-    //public void DisplayScore()
-    //{
-    //    scoreText.text = "Score  is " + score;
-    //    DislpayHighScore();
-    //}
+    public void ResetScore()
+    {
+        score = 0;
+    }
 
-    //public void SetHighScore()
-    //{
-    //    if(score>highScore)
-    //    {
-    //        highScore = score;
-    //        PlayerPrefs.SetInt("HighScore", highScore);
-    //    }
-    //}
 
-    //private void DislpayHighScore()
-    //{
-    //    GetHighScore();
-    //    highscoreText.text = "High Score: " + highScore;
-    //}
+  
 }

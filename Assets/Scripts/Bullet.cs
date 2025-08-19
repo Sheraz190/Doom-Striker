@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     #region Variables
     private Vector2 bulletOriginalScale;
+
     #endregion
 
 

@@ -15,15 +15,18 @@ public class StartPanel : MonoBehaviour
 
     private void Start()
     {
+       
+    }
+
+
+
+    private void OnEnable()
+    {
         DisplayHighScore();
     }
 
     private void DisplayHighScore()
     {
-        if(ScoreManager.instance==null)
-        {
-            Debug.Log("Instance is null");
-        }
         highScoreText.text = "High Score :" + scoreManager.GetHighScore();
     }
 

@@ -21,10 +21,11 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 3;
     private bool isJumping = false;
     private bool isGrounded = true;
-   
+    public bool canMove=true;
     private bool canDoublejump = true;
     private int jumpCount = 0;
-
+    private float joystickInput;
+    private bool notCollided=true;
     #endregion
 
     private void Start()
@@ -34,12 +35,16 @@ public class PlayerController : MonoBehaviour
         originalScale = transform.localScale;
         animator = GetComponent<Animator>();
         CheckPlayerPosition();
+        canMove = true;
     }
 
     private void OnEnable()
     {
         StartCoroutine(ResetPostion());
+        Health = 10;
+    
     }
+
 
     private IEnumerator ResetPostion()
     {
@@ -90,12 +95,30 @@ public class PlayerController : MonoBehaviour
 //        }
        
 //#else
+        if(canMove)
+        {
+            joystickInput = joyStick.Horizontal;
+        }
+        else
+        {
+            joystickInput = 0;
+         
+            
+        }
+         rb.velocity = new Vector2(joystickInput * moveSpeed, rb.velocity.y);
         
-        rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, rb.velocity.y);
+        
         
        
         
 //#endif
+    }
+    
+    public void StopMoving()
+    {
+        canMove = false;
+        joyStick.OnPointerUp(null);
+        joystickInput = 0;
     }
 
     public void SetWalkFalse()
@@ -120,15 +143,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+
     private void DetectInput()
     {
         float horizontalInput = joyStick.Horizontal;
-        if (horizontalInput < 0)
+        if (horizontalInput < 0&&canMove)
         {
             transform.localScale = new Vector2(-originalScale.x, originalScale.y);
 
         }
-        else if (horizontalInput > 0)
+        else if (horizontalInput > 0&&canMove)
         {
             transform.localScale = new Vector2(originalScale.x, originalScale.y);
         }
@@ -192,27 +217,37 @@ public class PlayerController : MonoBehaviour
                 jumpCount = 0;
                 canDoublejump = true;
             }
-            
         }
+
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            if(Health>0)
+            if (notCollided)
             {
-                Health -= 2;
-                GamePlayPanel.Instance.DisplayHealth();
+                if (Health > 0 )
+                {
+                    Health -= 2;
+                    GamePlayPanel.Instance.DisplayHealth();
+                }
+                else if (Health <= 0)
+                {
+                    GameManager.Instance.GameEndMethod();
+                }
+                notCollided=false;
             }
-            if (Health <= 0)
-            {
-                Debug.Log("Health Ends");
-            }
+            
         }
     }
+    
  
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            notCollided = true; 
         }
     }
 
@@ -225,6 +260,52 @@ public class PlayerController : MonoBehaviour
     {
         currentPosofPlayer = player.transform.localPosition;
     }
+
+
+
+    //public void ResetToIdle()
+    //{
+    //    canMove = false;
+    //    // Stop movement completely
+    //    rb.velocity = Vector2.zero;
+    //    rb.angularVelocity = 0f;
+
+    //    // Reset animator states
+    //    animator.SetBool("isWalk", false);
+    //    animator.SetBool("jump", false);
+
+    //    // Reset joystick input
+    //    LockJoystick();
+
+     
+    //}
+
+
+    public void  ResetPlayerHealth()
+    {
+        Health = 10;
+    }
+
+
+
+    //public void LockJoystick()
+    //{
+    //    canMove = false; // Ignore input in Movings()
+
+    //    // Stop any current movement
+    //    rb.velocity = Vector2.zero;
+    //    rb.angularVelocity = 0f;
+
+    //    // Force idle animations
+    //    animator.SetBool("isWalk", false);
+    //    animator.SetBool("jump", false);
+
+    //    // Option 1: Disable joystick completely (best for touch devices)
+    //    if (joyStick != null)
+    //    {
+    //        joyStick.gameObject.SetActive(false);
+    //    }
+    //}
 
 }
 
