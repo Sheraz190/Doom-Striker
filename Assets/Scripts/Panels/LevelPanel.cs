@@ -11,7 +11,8 @@ public class LevelPanel : MonoBehaviour
     public void OnLevelSelected(int levelIndex)
     {
         StartCoroutine(OnTextPanel());
-        EnemySpawner.Instance.currentLevel = levelIndex;
+        GameManager.Instance.currentLevel = levelIndex;
+        Debug.Log("Level is: " + levelIndex);
     }
 
     private IEnumerator OnTextPanel()

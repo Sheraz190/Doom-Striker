@@ -66,14 +66,6 @@ public class Enemy : MonoBehaviour
 
     public void SetDirection()
     {
-        //if (gameObject.transform.localPosition.x -player.transform.position.x <-198)
-        //{
-        //    transform.localScale = new Vector2(originalScale.x, originalScale.y);
-        //}
-        //else
-        //{
-        //    transform.localScale = new Vector2(-originalScale.x, originalScale.y);
-        //}
 
         int side = GetPlayerSide();
 
@@ -122,7 +114,6 @@ public class Enemy : MonoBehaviour
         // transform.Translate(-Time.deltaTime, 0, 0);
         float direction = (transform.position.x < player.transform.position.x) ? -1f : 1f;
         transform.position = new Vector3(transform.position.x + (2.5f * direction),transform.position.y,0);
-      
     }
 
     private void TakeDamage()
@@ -131,12 +122,16 @@ public class Enemy : MonoBehaviour
         
         if (health <= 0&&health>0- GunController.Instance.damage)
         {
+            GameManager.Instance.enemiesKilled++;
             StartCoroutine(ApplyBloodParticle());
-            StartCoroutine(WaitTime());
-            EnemySpawner.Instance.SpawnEnemies();
-            ScoreManager.instance.score += 50;
-            ScoreManager.instance.UpdateScore();
-            ScoreManager.instance.SetHighScore();
+            if(GameManager.Instance.enemiesKilled<GameManager.Instance.currentLevel)
+            {
+                StartCoroutine(WaitTime());
+                EnemySpawner.Instance.SpawnEnemies();
+                ScoreManager.instance.score += 50;
+                ScoreManager.instance.UpdateScore();
+                ScoreManager.instance.SetHighScore();
+            }
         }
     }
 

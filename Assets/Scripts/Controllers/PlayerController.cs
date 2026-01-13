@@ -234,7 +234,6 @@ public class PlayerController : MonoBehaviour
                 }
                 notCollided=false;
             }
-            
         }
     }
     
@@ -251,6 +250,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("SideCollider"))
+        {
+            GameManager.Instance.CheckIfGameCompleted();
+        }
+    }
+
     private void ResetPlayerPosition()
     {
         player.transform.localPosition = currentPosofPlayer;
@@ -261,52 +268,10 @@ public class PlayerController : MonoBehaviour
         currentPosofPlayer = player.transform.localPosition;
     }
 
-
-
-    //public void ResetToIdle()
-    //{
-    //    canMove = false;
-    //    // Stop movement completely
-    //    rb.velocity = Vector2.zero;
-    //    rb.angularVelocity = 0f;
-
-    //    // Reset animator states
-    //    animator.SetBool("isWalk", false);
-    //    animator.SetBool("jump", false);
-
-    //    // Reset joystick input
-    //    LockJoystick();
-
-     
-    //}
-
-
     public void  ResetPlayerHealth()
     {
         Health = 10;
     }
-
-
-
-    //public void LockJoystick()
-    //{
-    //    canMove = false; // Ignore input in Movings()
-
-    //    // Stop any current movement
-    //    rb.velocity = Vector2.zero;
-    //    rb.angularVelocity = 0f;
-
-    //    // Force idle animations
-    //    animator.SetBool("isWalk", false);
-    //    animator.SetBool("jump", false);
-
-    //    // Option 1: Disable joystick completely (best for touch devices)
-    //    if (joyStick != null)
-    //    {
-    //        joyStick.gameObject.SetActive(false);
-    //    }
-    //}
-
 }
 
 

@@ -41,18 +41,17 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        float num = Random.Range(-10, 10);
-        if((num<3&&num>0)||(num>-3&&num<0))
-        {
-            num += 6;
-        }
+            float num = Random.Range(-10, 10);
+            if ((num < 3 && num > 0) || (num > -3 && num < 0))
+            {
+                num += 6;
+            }
+            float offsetX = (num < 5) ? -5f : 5f;
+            float offsetY = Random.Range(-2f, 2f);
 
-        float offsetX = (num < 5) ? -5f : 5f; 
-        float offsetY = Random.Range(-2f, 2f); 
-
-        Vector2 spawnPos = new Vector2(player.position.x + num, player.position.y+0);
-        StartCoroutine(AddTime());
-        Instantiate(enemyPrefabs[SelectEnemy()], spawnPos, Quaternion.identity, enemyContainer.transform);
+            Vector2 spawnPos = new Vector2(player.position.x + num, player.position.y + 0);
+            StartCoroutine(AddTime());
+            Instantiate(enemyPrefabs[SelectEnemy()], spawnPos, Quaternion.identity, enemyContainer.transform);
     }
 
 

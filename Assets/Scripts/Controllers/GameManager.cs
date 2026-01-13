@@ -13,17 +13,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject EndScreen;
     [SerializeField] private GameObject Enviroment;
     [SerializeField] private RectTransform joystick;
+    [SerializeField] private GameObject winPanel;
     public bool firstTime = true;
     public GameObject fireParticle;
     public GameObject bloodParticle;
+    public int currentLevel;
+    public int enemiesKilled;
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
         firstTime = true;
     }
-
 
     public IEnumerator SpawnParticles()
     { 
@@ -32,6 +34,36 @@ public class GameManager : MonoBehaviour
         fireParticle.gameObject.SetActive(false);
     }
 
+    public void CheckIfGameCompleted()
+    {
+        if(enemiesKilled>=currentLevel)
+        {
+            Debug.Log("condition becomes true for check");
+            StartCoroutine(OnLevelCompleted());
+        }
+    }
+
+    private IEnumerator OnLevelCompleted()
+    {
+        GamePlayScreen.SetActive(false);
+        Enviroment.SetActive(false);
+        winPanel.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        winPanel.SetActive(false);
+        ScoreManager.instance.ResetScore();
+        ScoreManager.instance.UpdateScore();
+        PlayerController.Instance.ResetPlayerHealth();
+        EndScreen.SetActive(true);
+        joystick.anchoredPosition = Vector2.zero;
+        EnemySpawner.Instance.ClearEnemies();
+        PlayerController.Instance.StopMoving();
+        currentLevel = 0;
+        enemiesKilled = 0;
+        fireParticle.SetActive(false);
+        bloodParticle.SetActive(false);
+        BackButton();
+        GameEndMethod();
+    }
 
     public void GameEndMethod()
     {
@@ -45,6 +77,8 @@ public class GameManager : MonoBehaviour
         joystick.anchoredPosition = Vector2.zero;
         EnemySpawner.Instance.ClearEnemies();      
         PlayerController.Instance.StopMoving();
+        currentLevel = 0;
+        enemiesKilled = 0;
     }
 
 
@@ -59,8 +93,9 @@ public class GameManager : MonoBehaviour
         joystick.anchoredPosition = Vector2.zero;
         EnemySpawner.Instance.ClearEnemies();
         PlayerController.Instance.StopMoving();
+        currentLevel = 0;
+        enemiesKilled = 0;
     }
-
 
     public void ResetGame()
     {
@@ -68,7 +103,6 @@ public class GameManager : MonoBehaviour
         GamePlayPanel.Instance.ResetBullets();
        StartCoroutine(BulletController.Instance.InstantiateBullets());
     }
-
 
     public void ResetforBack()
     {
@@ -84,7 +118,6 @@ public class GameManager : MonoBehaviour
             GamePlayPanel.Instance.ResetBullets();
             StartCoroutine(BulletController.Instance.InstantiateBullets());
         }
-       
     }
   
     private IEnumerator AllowPlayerToMove()
@@ -98,5 +131,4 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game application exit");
         Application.Quit();
     }
-
 }
