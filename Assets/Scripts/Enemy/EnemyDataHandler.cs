@@ -23,7 +23,6 @@ public class EnemyDataHandler : MonoBehaviour
     }
     private void Start()
     {
-     
         GetEnemyData(2);
     }
 

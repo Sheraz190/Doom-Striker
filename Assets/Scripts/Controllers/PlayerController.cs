@@ -64,11 +64,11 @@ public class PlayerController : MonoBehaviour
 
     private void SetGravity()
     {
-        if (rb.velocity.y > 0 || rb.velocity.y == 0)
+        if (rb.linearVelocity.y > 0 || rb.linearVelocity.y == 0)
         {
             rb.gravityScale = 2;
         }
-        else if (rb.velocity.y < 6)
+        else if (rb.linearVelocity.y < 6)
         {
             rb.gravityScale = 6;
         }
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
          
             
         }
-         rb.velocity = new Vector2(joystickInput * moveSpeed, rb.velocity.y);
+         rb.linearVelocity = new Vector2(joystickInput * moveSpeed, rb.linearVelocity.y);
         
         
         

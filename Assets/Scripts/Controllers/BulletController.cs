@@ -158,7 +158,7 @@ public class BulletController : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.velocity = new Vector2(direction * bulletSpeed * 2.5f, 0);
+            rb.linearVelocity = new Vector2(direction * bulletSpeed * 2.5f, 0);
         }
     }
 
